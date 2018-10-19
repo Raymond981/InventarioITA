@@ -13,3 +13,4 @@
 
 Route::get('/export/excel', 'ExcelExport@excel')->name('export.excel');
 Route::resource('almacen/materiales', 'MaterialController');
+Route::resource('/', 'WelcomeController');
