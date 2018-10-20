@@ -15,7 +15,20 @@ class MaterialController extends Controller
    	public function __construct(){
 
    	}
-
+		 /** guardar una relación en el controlador
+         * $ship = new Ship;
+         *$ship->name = 'Enterprise';
+        *$ship->registry = 'ncc-1701D';
+        *
+        *$ship->save();
+        *
+        *Then for the relation;
+        *$captain = new Captain;
+        *
+        *$captain->name = 'jean Luc Picard';
+        *
+        *$ship->captain()->save($captain);
+     */
    	public function index(Request $request){
    		if($request){
    			$query=trim($request->get('searchText')); //Buscar por material y id

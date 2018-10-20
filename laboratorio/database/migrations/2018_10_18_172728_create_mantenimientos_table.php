@@ -15,7 +15,6 @@ class CreateMantenimientosTable extends Migration
     {
         Schema::create('mantenimientos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('elemento_id');
             $table->string('tipo_mantenimiento');
             $table->string('responsable');
             $table->time('fecha_inicio');

@@ -15,7 +15,6 @@ class CreateRiesgosTable extends Migration
     {
         Schema::create('riesgos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('elemento_id');
             $table->string('riesgo');
             $table->timestamps();
         });
