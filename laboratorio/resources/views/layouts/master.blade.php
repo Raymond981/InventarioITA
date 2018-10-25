@@ -9,22 +9,17 @@
 
     <title>{{ config('app.name', 'Laboratorio ITA') }}</title>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-cyan.min.css" />
-    <link rel="stylesheet" href="/css/styles.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    
 </head>
 <body>
   <div id="app">
-    <main>
-      @yield('content')
-    </main>
+    {{-- nathing XD XD todo en vue --}}
   </div>
 </body>
 </html>

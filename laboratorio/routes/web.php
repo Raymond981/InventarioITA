@@ -13,4 +13,7 @@
 
 Route::get('/export/excel', 'ExcelExport@excel')->name('export.excel');
 Route::resource('almacen/materiales', 'MaterialController');
-Route::resource('/', 'WelcomeController');
+//Route::resource('/', 'WelcomeController');
+Route::get('/{any}', function(){
+  return view('layouts/master');
+})->where('any', '.*');
