@@ -11,15 +11,14 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
 </head>
 <body>
   <div id="app">
-    {{-- nathing XD XD todo en vue --}}
+    <main-app/>
   </div>
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

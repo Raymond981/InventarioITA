@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.master')
 
 {{-- @section('content')
   <div class="mdc-layout-grid p-t-0 ">
