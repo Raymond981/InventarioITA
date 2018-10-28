@@ -1,16 +1,16 @@
 <template>
-    <div class="container">
-        Toto
-    </div>
+  <div>
+    Toto
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'home',
-        computed: {
-            welcome() {
-                return 'Toto'
-            }
-        }
+  export default {
+    name: 'home',
+    computed: {
+      welcome() {
+        return 'Toto'
+      }
     }
+  }
 </script>
