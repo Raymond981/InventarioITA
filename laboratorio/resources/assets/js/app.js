@@ -11,17 +11,12 @@ import VueRouter from 'vue-router';
 import {routes} from './routes';
 import MainApp from './components/MainApp.vue';
 import {initialize} from './helpers/general';
-//material design components
-window.mdc = require('material-components-web/index.js');
-window.mdc.autoInit();
-
 
 Vue.use(VueRouter);
 
 Vue.config.devtools = true;
 Vue.config.performance = true;
-Vue.config.productionTip = false
-
+Vue.config.productionTip = false;
 
 const router = new VueRouter({
     routes,

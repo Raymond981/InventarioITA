@@ -15,5 +15,5 @@
 // Route::resource('almacen/materiales', 'MaterialController');
 // //Route::view('/', '/layouts/master');
 Route::get('{any}', function () {
-  return view('layouts/master');
+  return view('welcome');
 })->where('any', '.*');

@@ -11,13 +11,14 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
 </head>
 <body>
   <div id="app">
-    <main-app/>
+    @yield('content')
+    {{-- <my-app></my-app> --}}
   </div>
   <script src="{{ asset('js/app.js') }}"></script>
 </body>
