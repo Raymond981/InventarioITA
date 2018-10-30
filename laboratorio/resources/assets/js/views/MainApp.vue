@@ -2,7 +2,6 @@
   <div>
     <navigation-drawer @toggleDrawer='isActive=!isActive'></navigation-drawer>
     <div :class='[{ "open-margin": isActive }, "content"]'>
-      <p>{{isActive}}</p>
       <router-view></router-view>
     </div>
   </div>
@@ -26,7 +25,6 @@ import NavigationDrawer from '../components/NavigationDrawer.vue'
 
 <style lang='sass' scoped>
   .content
-    height: 120vh
     margin-left: 3.5rem
     transition: margin-left .5s
   .open-margin

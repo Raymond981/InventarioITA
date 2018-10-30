@@ -1,0 +1,57 @@
+<template>
+  <div class='columns is-mobile is-multiline'>
+    <div class='column is-6 is-hidden-tablet p-b-none'>
+      <p class='has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered'>Todo</p>
+    </div>
+    <div class='column is-6 is-hidden-tablet p-b-none'>
+      <a class="button is-rounded is-primary">
+        <span class="icon">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span>Nuevo registro</span>
+      </a>
+    </div>
+
+    <div class='column is-3-tablet is-hidden-mobile'>
+      <p class='has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered'>Todo</p>
+    </div>
+    <div class='column is-6-tablet is-12-mobile'>
+      <div class='field has-addons'>
+        <div class='control is-expanded'>
+          <input class='input is-rounded' type='text' placeholder='Buscar un elemento'>
+        </div>
+        <div class='control'>
+          <a class='button is-info is-rounded'>
+            <span class='icon'>
+              <i class='fas fa-search'></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class='column is-3-tablet is-hidden-mobile'>
+      <a class="button is-rounded is-primary">
+        <span class="icon">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span>Nuevo registro</span>
+      </a>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'home',
+    computed: {
+      welcome() {
+        return 'Toto'
+      }
+    }
+  }
+</script>
+
+<style lang="sass" scoped>
+  .p-b-none
+    padding-bottom: 0 !important
+</style>

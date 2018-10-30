@@ -36005,6 +36005,13 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TopBar_vue__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TopBar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_TopBar_vue__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -36012,12 +36019,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
-  computed: {
-    welcome: function welcome() {
-      return 'Toto';
-    }
+  components: {
+    TopBar: __WEBPACK_IMPORTED_MODULE_0__components_TopBar_vue___default.a
   }
 });
 
@@ -36029,9 +36036,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  Toto\n")])
+  return _c(
+    "div",
+    { staticClass: "columns is-mobile is-multiline p-t-sm p-r-sm p-l-sm" },
+    [
+      _c("div", { staticClass: "column is-12" }, [_c("top-bar")], 1),
+      _vm._v(" "),
+      _vm._m(0)
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column is-12" }, [
+      _c(
+        "p",
+        {
+          staticClass:
+            "is-size-2 has-text-centered has-text-weight-semibold has-text-success"
+        },
+        [_vm._v("Dashboard")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -36223,7 +36254,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n.content[data-v-7bfda2a5] {\n  height: 120vh;\n  margin-left: 3.5rem;\n  -webkit-transition: margin-left .5s;\n  transition: margin-left .5s;\n}\n.open-margin[data-v-7bfda2a5] {\n  margin-left: 10rem;\n}\n", ""]);
+exports.push([module.i, "\n.content[data-v-7bfda2a5] {\n  margin-left: 3.5rem;\n  -webkit-transition: margin-left .5s;\n  transition: margin-left .5s;\n}\n.open-margin[data-v-7bfda2a5] {\n  margin-left: 10rem;\n}\n", ""]);
 
 // exports
 
@@ -36269,7 +36300,6 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NavigationDrawer_vue__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NavigationDrawer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_NavigationDrawer_vue__);
-//
 //
 //
 //
@@ -36607,11 +36637,7 @@ var render = function() {
       _c(
         "div",
         { class: [{ "open-margin": _vm.isActive }, "content"] },
-        [
-          _c("p", [_vm._v(_vm._s(_vm.isActive))]),
-          _vm._v(" "),
-          _c("router-view")
-        ],
+        [_c("router-view")],
         1
       )
     ],
@@ -36672,6 +36698,247 @@ function setAuthorization(token) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(67)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(65)
+/* template */
+var __vue_template__ = __webpack_require__(69)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-63fa6c75"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/TopBar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-63fa6c75", Component.options)
+  } else {
+    hotAPI.reload("data-v-63fa6c75", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'home',
+  computed: {
+    welcome: function welcome() {
+      return 'Toto';
+    }
+  }
+});
+
+/***/ }),
+/* 66 */,
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(68);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("45f9ea51", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63fa6c75\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js?indentedSyntax!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TopBar.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63fa6c75\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js?indentedSyntax!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TopBar.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.p-b-none[data-v-63fa6c75] {\n  padding-bottom: 0 !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns is-mobile is-multiline" }, [
+      _c("div", { staticClass: "column is-6 is-hidden-tablet p-b-none" }, [
+        _c(
+          "p",
+          {
+            staticClass:
+              "has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered"
+          },
+          [_vm._v("Todo")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column is-6 is-hidden-tablet p-b-none" }, [
+        _c("a", { staticClass: "button is-rounded is-primary" }, [
+          _c("span", { staticClass: "icon" }, [
+            _c("i", { staticClass: "fas fa-plus" })
+          ]),
+          _vm._v(" "),
+          _c("span", [_vm._v("Nuevo registro")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column is-3-tablet is-hidden-mobile" }, [
+        _c(
+          "p",
+          {
+            staticClass:
+              "has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered"
+          },
+          [_vm._v("Todo")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column is-6-tablet is-12-mobile" }, [
+        _c("div", { staticClass: "field has-addons" }, [
+          _c("div", { staticClass: "control is-expanded" }, [
+            _c("input", {
+              staticClass: "input is-rounded",
+              attrs: { type: "text", placeholder: "Buscar un elemento" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "control" }, [
+            _c("a", { staticClass: "button is-info is-rounded" }, [
+              _c("span", { staticClass: "icon" }, [
+                _c("i", { staticClass: "fas fa-search" })
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column is-3-tablet is-hidden-mobile" }, [
+        _c("a", { staticClass: "button is-rounded is-primary" }, [
+          _c("span", { staticClass: "icon" }, [
+            _c("i", { staticClass: "fas fa-plus" })
+          ]),
+          _vm._v(" "),
+          _c("span", [_vm._v("Nuevo registro")])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-63fa6c75", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
