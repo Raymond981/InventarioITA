@@ -5,8 +5,7 @@
     </div>
     <div class='column is-12'>
       <div class="columns is-multiline is-mobile is-centered">
-        <element-card :mantenimiento="false"></element-card>
-        <element-card :mantenimiento="true"></element-card>
+        <element-card class="column is-11 m-b-md" :mantenimiento="false"></element-card>
       </div>
     </div>
   </div>

@@ -36430,7 +36430,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -36605,7 +36604,7 @@ var render = function() {
     "div",
     {
       class: [
-        "element-card column is-11",
+        "element-card",
         { "element-card--maintenance": _vm.mantenimiento }
       ]
     },
@@ -36734,9 +36733,10 @@ var render = function() {
           "div",
           { staticClass: "columns is-multiline is-mobile is-centered" },
           [
-            _c("element-card", { attrs: { mantenimiento: false } }),
-            _vm._v(" "),
-            _c("element-card", { attrs: { mantenimiento: true } })
+            _c("element-card", {
+              staticClass: "column is-11 m-b-md",
+              attrs: { mantenimiento: false }
+            })
           ],
           1
         )

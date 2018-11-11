@@ -1,5 +1,5 @@
 <template>
-  <div :class="['element-card column is-11', {'element-card--maintenance' : mantenimiento}]">
+  <div :class="['element-card', {'element-card--maintenance' : mantenimiento}]">
     <div class='columns is-multiline is-mobile'>
       <div class='column is-10'>
         <p :class="['p-none has-text-weight-bold is-size-5-tablet is-size-6-mobile', {'has-text-white': mantenimiento}]">
