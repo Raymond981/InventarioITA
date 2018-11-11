@@ -1,9 +1,9 @@
 <template>
   <div class='columns is-mobile is-multiline'>
-    <div class='column is-6 is-hidden-tablet p-b-none'>
-      <p class='has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered'>Todo</p>
+    <div class='column is-4 is-hidden-tablet p-b-none'>
+      <p class='has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered is-capitalized'>{{element}}</p>
     </div>
-    <div class='column is-6 is-hidden-tablet p-b-none'>
+    <div class='column is-7 is-hidden-tablet p-b-none'>
       <a class="button is-rounded is-primary">
         <span class="icon">
           <i class="fas fa-plus"></i>
@@ -13,12 +13,12 @@
     </div>
 
     <div class='column is-3-tablet is-hidden-mobile'>
-      <p class='has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered'>Todo</p>
+      <p class='has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered is-capitalized'>{{element}}</p>
     </div>
     <div class='column is-6-tablet is-12-mobile'>
       <div class='field has-addons'>
         <div class='control is-expanded'>
-          <input class='input is-rounded' type='text' placeholder='Buscar un elemento'>
+          <input class='input is-rounded' type='text' :placeholder="'Buscar ' + element">
         </div>
         <div class='control'>
           <a class='button is-info is-rounded'>
@@ -46,6 +46,12 @@
     computed: {
       welcome() {
         return 'Toto'
+      }
+    },
+    props: {
+      element: {
+        type: String,
+        required: true
       }
     }
   }
