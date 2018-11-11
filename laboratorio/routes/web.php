@@ -17,3 +17,7 @@
 Route::get('{any}', function () {
   return view('welcome');
 })->where('any', '.*');
+
+Route::apiResource('Elements/reactivos', 'ReactivoController');
+Route::apiResource('Elements/materiales', 'MaterialController');
+Route::apiResource('Elements/equipos', 'EquipoController');
