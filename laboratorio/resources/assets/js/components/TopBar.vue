@@ -4,7 +4,7 @@
       <p class='has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered is-capitalized'>{{element}}</p>
     </div>
     <div class='column is-7 is-hidden-tablet p-b-none'>
-      <a class="button is-rounded is-primary">
+      <a class="button is-rounded is-primary" @click="open">
         <span class="icon">
           <i class="fas fa-plus"></i>
         </span>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class='column is-3-tablet is-hidden-mobile'>
-      <a class="button is-rounded is-primary">
+      <a class="button is-rounded is-primary" @click="open">
         <span class="icon">
           <i class="fas fa-plus"></i>
         </span>
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+
   export default {
     name: 'home',
     computed: {
@@ -52,6 +53,11 @@
       element: {
         type: String,
         required: true
+      }
+    },
+    methods: {
+      open () {
+        this.$emit('open')
       }
     }
   }

@@ -3,7 +3,7 @@
     <div class='columns is-multiline is-mobile'>
       <div class='column is-10'>
         <p :class="['p-none has-text-weight-bold is-size-5-tablet is-size-6-mobile', {'has-text-white': mantenimiento}]">
-          Título
+          {{nombre}}
         </p>
       </div>
       <div class="column is-2">
@@ -23,11 +23,11 @@
       </div>
       <div class="column is-9-tablet is-12-mobile p-t-0">
         <p :class="['has-text-justified is-size-6-tablet is-size-7-mobile', {'has-text-white':mantenimiento}]">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curae hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus.
+          {{descripcion}}
         </p>
       </div>
       <div class="column is-3-tablet is-12-mobile centered p-t-0">
-        <p :class="[{'has-text-white': mantenimiento}]">12 elementos</p>
+        <p :class="[{'has-text-white': mantenimiento}]">{{cantidad}} elementos</p>
       </div>
     </div>
   </div>
@@ -40,6 +40,18 @@
     props: {
       mantenimiento: {
         type: Boolean,
+        required: true
+      },
+      nombre: {
+        type: String,
+        required: true
+      },
+      descripcion:{
+        type: String,
+        required: true
+      },
+      cantidad: {
+        type: Number,
         required: true
       }
     }
