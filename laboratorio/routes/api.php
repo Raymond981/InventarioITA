@@ -16,3 +16,14 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('reactivos', 'ReactivoController');
+// Route::apiResource('Elements/materiales', 'MaterialController')->middleware('cors');
+// Route::apiResource('Elements/equipos', 'EquipoController')->middleware('cors');
+
+// Route::group(['middleware' => 'cors'], function ($router) {
+
+//     Route::get('reactivos', 'ReactivoController@index');
+//     Route::post('reactivos2', 'ReactivoController@store');
+
+// });

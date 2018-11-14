@@ -3,13 +3,14 @@
 namespace Lab\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Elemento;
+use App\Http\Resources\ElementoResource as Toto;
 
 class ReactivoController extends Controller
 {
- 
     public function index()
     {
-        return Elemento::where('tipo','reactivo')->where('eliminado','=',0);
+        return Toto::collection(Elemento);
     }
 
 

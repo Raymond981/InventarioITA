@@ -45,7 +45,7 @@
               </span>
             </p>
           </div>
-          <a class="button is-rounded">Agregar</a>
+          <a class="button is-rounded" @click="toto">Agregar</a>
         </template>
       </base-modal>
     </div>
@@ -61,6 +61,7 @@
 import TopBar from '../components/TopBar.vue'
 import ElementCard from '../components/ElementCard.vue'
 import BaseModal from '../components/BaseModal.vue'
+import axios from 'axios'
 
   export default {
     name: 'home',
@@ -78,6 +79,13 @@ import BaseModal from '../components/BaseModal.vue'
     data () {
       return {
         active: false
+      }
+    },
+    methods: {
+      toto(){
+        axios.get('http://localhost:8001/api/reactivos').then(({data})=>{
+          console.log(data)
+        })
       }
     }
   }
