@@ -3,12 +3,15 @@
 namespace Lab\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Lab\Elemento;
+use Lab\Http\Resources\ElementoResource as Toto;
 
 class EquipoController extends Controller
 {
     public function index()
     {
-        return Elemento::where('tipo','equipo')->where('eliminado','=',0);
+        $elemento = Elemento::orderBy('nombre', 'desc')->where('tipo','equipo')->where('eliminado','=',0)->paginate(12);
+        return Toto::collection($elemento);
     }
 
 

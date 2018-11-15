@@ -5,7 +5,7 @@
     </div>
     <div class='column is-12'>
       <div class="columns is-multiline is-mobile is-centered">
-        <element-card class="column is-11 m-b-md" :mantenimiento="false" :cantidad="12" nombre="Elemento 1" descripcion="Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curae hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus."></element-card>
+        <element-card class='column is-11 m-b-md' v-for='element in elements' :key='element.id' :element='element'></element-card>
       </div>
     </div>
 
@@ -101,7 +101,14 @@ import axios from 'axios'
     data () {
       return {
         active: false,
-        dates: []
+        dates: [],
+        elements: [
+          {id:1, nombre:'Elemento 1', descripcion:'Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curae hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus.', cantidad:12, mantenimiento: false },
+          {id:2, nombre:'Elemento 2', descripcion:'Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curae hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus.', cantidad:2, mantenimiento: false },
+          {id:3, nombre:'Elemento 3', descripcion:'Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curae hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus.', cantidad:15, mantenimiento: false },
+          {id:4, nombre:'Elemento 4', descripcion:'Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curae hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus.', cantidad:20, mantenimiento: true },
+          {id:5, nombre:'Elemento 5', descripcion:'Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curae hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus.', cantidad:40, mantenimiento: false }
+        ]
       }
     },
     methods: {
