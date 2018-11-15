@@ -11,9 +11,15 @@ import VueRouter from 'vue-router';
 import {routes} from './routes';
 import MainApp from './views/MainApp.vue';
 import {initialize} from './helpers/general';
-
+import VCalendar from 'v-calendar';
+import 'v-calendar/lib/v-calendar.min.css';
 Vue.use(VueRouter);
-
+Vue.use(VCalendar,{
+    locale: 'es-MX',
+    firstDayOfWeek: 2,
+    datePickerShowDayPopover: false,
+    datePickerTintColor: '#313e50'
+});
 Vue.config.devtools = true;
 Vue.config.performance = true;
 Vue.config.productionTip = false;

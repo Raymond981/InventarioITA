@@ -1,13 +1,13 @@
 <template>
-  <div :class="['element-card', {'element-card--maintenance' : mantenimiento}]">
-    <div class='columns is-multiline is-mobile' v-for="element in elements" v-bind:key="element.id">
+  <div :class="['element-card', {'element-card--maintenance' : element.mantenimiento}]">
+    <div class='columns is-multiline is-mobile'>
       <div class='column is-10'>
-        <p :class="['p-none has-text-weight-bold is-size-5-tablet is-size-6-mobile', {'has-text-white': mantenimiento}]">
-          {{nombre}}
+        <p :class="['p-none has-text-weight-bold is-size-5-tablet is-size-6-mobile', {'has-text-white': element.mantenimiento}]">
+          {{element.nombre}}
         </p>
       </div>
       <div class="column is-2">
-        <div :class="['dropdown is-hoverable is-right is-pulled-right', {'has-text-white':mantenimiento}]">
+        <div :class="['dropdown is-hoverable is-right is-pulled-right', {'has-text-white':element.mantenimiento}]">
           <div class="dropdown-trigger">
             <span class="icon is-small" aria-haspopup="true">
               <i class="fas fa-ellipsis-v"></i>
@@ -22,12 +22,12 @@
         </div>
       </div>
       <div class="column is-9-tablet is-12-mobile p-t-0">
-        <p :class="['has-text-justified is-size-6-tablet is-size-7-mobile', {'has-text-white':mantenimiento}]">
-          {{descripcion}}
+        <p :class="['has-text-justified is-size-6-tablet is-size-7-mobile', {'has-text-white':element.mantenimiento}]">
+          {{element.descripcion}}
         </p>
       </div>
       <div class="column is-3-tablet is-12-mobile centered p-t-0">
-        <p :class="[{'has-text-white': mantenimiento}]">{{cantidad}} elementos</p>
+        <p :class="[{'has-text-white': element.mantenimiento}]">{{element.cantidad}} elements</p>
       </div>
     </div>
   </div>
@@ -38,22 +38,10 @@
   export default {
     name: 'ElementCard',
     props: {
-      mantenimiento: {
-        type: Boolean,
+      element: {
+        type: Object,
         required: true
-      },
-      nombre: {
-        type: String,
-        required: true
-      },
-      descripcion:{
-        type: String,
-        required: true
-      },
-      cantidad: {
-        type: Number,
-        required: true
-      },
+      }
     },
   }
 </script>
