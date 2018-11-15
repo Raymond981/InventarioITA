@@ -25,13 +25,14 @@ class MaterialController extends Controller
         $elemento->cantidad = $request->cantidad;
         $elemento->save();
 
-        return $elemento;
+        return Toto::collection($elemento);
     }
  
 
     public function show($id)
     {
-        //
+        $elemento = Elemento::findOrFail($id);
+        return new Toto($elemento);   
     }
 
 
