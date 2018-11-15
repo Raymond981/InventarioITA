@@ -22,6 +22,8 @@ class ElementoResource extends JsonResource
             'no_serie' => $this->no_serie,
             'cantidad' => (string) $this->cantidad,
             'eliminado' => (string) $this->eliminado,
+            'mantenimiento1' => (string) $this->mantenimiento1,
+            'mantenimiento2' => (string) $this->mantenimiento2,
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at
           ];

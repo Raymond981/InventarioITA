@@ -25,7 +25,7 @@ class EquipoController extends Controller
         $elemento->cantidad = $request->cantidad;
         $elemento->save();
 
-       return Toto::collection($elemento);
+       return new Toto($elemento);
     }
  
 

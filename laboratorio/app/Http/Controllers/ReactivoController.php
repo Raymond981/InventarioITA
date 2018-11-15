@@ -23,9 +23,12 @@ class ReactivoController extends Controller
         $elemento->descripcion = $request->descripcion;
         $elemento->no_serie = $request->no_serie;
         $elemento->cantidad = $request->cantidad;
+        $elemento->mantenimiento1 = $request->mantenimiento1;
+        $elemento->mantenimiento2 = $request->mantenimiento2;
+        $elemento->eliminado = $request->eliminado;
         $elemento->save();
 
-        return Toto::collection($elemento);
+        return new Toto($elemento);
     }
     
     public function show($id)
