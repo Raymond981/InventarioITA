@@ -1,6 +1,6 @@
 <template>
   <div :class="['element-card', {'element-card--maintenance' : mantenimiento}]">
-    <div class='columns is-multiline is-mobile'>
+    <div class='columns is-multiline is-mobile' v-for="element in elements" v-bind:key="element.id">
       <div class='column is-10'>
         <p :class="['p-none has-text-weight-bold is-size-5-tablet is-size-6-mobile', {'has-text-white': mantenimiento}]">
           {{nombre}}
@@ -53,8 +53,8 @@
       cantidad: {
         type: Number,
         required: true
-      }
-    }
+      },
+    },
   }
 </script>
 

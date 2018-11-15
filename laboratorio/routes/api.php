@@ -17,7 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('reactivos', 'ReactivoController');
+Route::apiResource('Elements/reactivos', 'ReactivoController');
+Route::apiResource('Elements/materiales', 'MaterialController');
+Route::apiResource('Elements/equipos', 'EquipoController');
 // Route::apiResource('Elements/materiales', 'MaterialController')->middleware('cors');
 // Route::apiResource('Elements/equipos', 'EquipoController')->middleware('cors');
 

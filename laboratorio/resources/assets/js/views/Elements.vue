@@ -51,7 +51,7 @@
     </div>
     <div class='column is-12'>
       <div class="columns is-multiline is-mobile is-centered">
-        <element-card class="column is-11 m-b-md" :mantenimiento="false" :cantidad="12" nombre="Elemento 1" descripcion="Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curae hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus."></element-card>
+        <element-card v-for="element in elements" :key="element.id" :element="element" class="column is-11 m-b-md" :mantenimiento="false" :cantidad="12" nombre="ASAS 1" descripcion="Lorem ipsum dolor sit amet consectetur adipiscing elit, litora lacus commodo curaekkkk hac dignissim porta, cum luctus netus laoreet fames semper. Quam id dictum ultrices velit magna est tempus ridiculus."></element-card>
       </div>
     </div>
   </div>
@@ -78,7 +78,7 @@ import axios from 'axios'
     },
     data () {
       return {
-        active: false
+        active: false,
       }
     },
     methods: {
