@@ -16,13 +16,13 @@ class CreateElementosTable extends Migration
         Schema::create('elementos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo',10);
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->string('no_serie');
+            $table->string('nombre',100);
+            $table->string('descripcion',150);
+            $table->string('no_serie', 100);
             $table->float('cantidad');
-            $table->time('mantenimiento1');
-            $table->time('mantenimiento2');
-            $table->boolean('eliminado');
+            $table->date('mantenimiento1')->nullable();
+            $table->date('mantenimiento2')->nullable();
+            $table->boolean('eliminado')->default(false);
             $table->timestamps();
         });
     }
