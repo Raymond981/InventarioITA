@@ -36751,6 +36751,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36772,13 +36794,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      active: false
+      active: false,
+      dates: []
     };
   },
 
   methods: {
     toto: function toto() {
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8001/api/reactivos').then(function (_ref) {
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/reactivos').then(function (_ref) {
         var data = _ref.data;
 
         console.log(data);
@@ -37079,144 +37102,7 @@ var render = function() {
                 _vm.active = !_vm.active
               }
             }
-          }),
-          _vm._v(" "),
-          _c(
-            "base-modal",
-            {
-              attrs: { active: _vm.active },
-              on: {
-                close: function($event) {
-                  _vm.active = !_vm.active
-                }
-              }
-            },
-            [
-              _c("template", { slot: "modal-content" }, [
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "column is-12 has-text-weight-bold has-text-centered is-size-5 m-none"
-                  },
-                  [_vm._v("Nuevo registro")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "column is-12 field m-none p-b-0" }, [
-                  _c("label", { staticClass: "label is-size-7-mobile" }, [
-                    _vm._v("Nombre")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "control" }, [
-                    _c("input", {
-                      staticClass: "input",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Nombre del elemento"
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "column is-12 field m-none p-b-0" }, [
-                  _c("label", { staticClass: "label is-size-7-mobile" }, [
-                    _vm._v("Descripción")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "control" }, [
-                    _c("textarea", {
-                      staticClass: "textarea",
-                      attrs: {
-                        placeholder: "Descripción del elemento",
-                        rows: 2
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    { staticClass: "help has-text-right has-text-primary" },
-                    [_vm._v("150")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "column is-6-tablet is-12-mobile field m-none p-b-0"
-                  },
-                  [
-                    _c("label", { staticClass: "label is-size-7-mobile" }, [
-                      _vm._v("No. Serie")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        staticClass: "input",
-                        attrs: { type: "text", placeholder: "Número de serie" }
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "column is-6-tablet is-12-mobile field m-none p-b-0"
-                  },
-                  [
-                    _c("label", { staticClass: "label is-size-7-mobile" }, [
-                      _vm._v("Cantidad")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        staticClass: "input",
-                        attrs: { type: "number", placeholder: "0" }
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "column is-12 field m-none" }, [
-                  _c("label", { staticClass: "label is-size-7-mobile" }, [
-                    _vm._v("Intervalo de mantenimientos")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    { staticClass: "control has-icons-left is-expanded" },
-                    [
-                      _c("span", { staticClass: "select is-fullwidth" }, [
-                        _c("select", [
-                          _c("option", { attrs: { selected: "" } }, [
-                            _vm._v("Mensualmente")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Select dropdown")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("With options")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "icon is-small is-left" }, [
-                        _c("i", { staticClass: "fas fa-globe" })
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "button is-rounded", on: { click: _vm.toto } },
-                  [_vm._v("Agregar")]
-                )
-              ])
-            ],
-            2
-          )
+          })
         ],
         1
       ),
@@ -37239,8 +37125,186 @@ var render = function() {
           ],
           1
         )
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _c(
+        "base-modal",
+        {
+          attrs: { active: _vm.active },
+          on: {
+            close: function($event) {
+              _vm.active = !_vm.active
+            }
+          }
+        },
+        [
+          _c("template", { slot: "modal-content" }, [
+            _c(
+              "p",
+              {
+                staticClass:
+                  "column is-12 has-text-weight-bold has-text-centered is-size-5 m-none"
+              },
+              [_vm._v("Nuevo " + _vm._s(_vm.tipo))]
+            ),
+            _vm._v(" "),
+            _vm.tipo === "equipo"
+              ? _c("div", { staticClass: "column is-12 field m-none" }, [
+                  _c("label", { staticClass: "label is-size-7-mobile" }, [
+                    _vm._v("Intervalo de mantenimientos")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "control" },
+                    [
+                      _c("v-date-picker", {
+                        attrs: {
+                          mode: "multiple",
+                          "input-props": {
+                            class: "input",
+                            placeholder: "Seleccione las fechas",
+                            readonly: true
+                          }
+                        },
+                        model: {
+                          value: _vm.dates,
+                          callback: function($$v) {
+                            _vm.dates = $$v
+                          },
+                          expression: "dates"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "column is-12 field m-none p-b-0" }, [
+              _c("label", { staticClass: "label is-size-7-mobile" }, [
+                _vm._v("Nombre")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  staticClass: "input",
+                  attrs: { type: "text", placeholder: "Nombre del elemento" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "column is-6-tablet is-12-mobile field m-none p-b-0"
+              },
+              [
+                _c("label", { staticClass: "label is-size-7-mobile" }, [
+                  _vm._v("No. Serie")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "control" }, [
+                  _c("input", {
+                    staticClass: "input",
+                    attrs: { type: "text", placeholder: "Número de serie" }
+                  })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "column is-6-tablet is-12-mobile m-none p-b-0" },
+              [
+                _c("label", { staticClass: "label is-size-7-mobile" }, [
+                  _vm._v("Cantidad")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "field has-addons has-addons-centered" },
+                  [
+                    _c("div", { staticClass: "control is-expanded" }, [
+                      _c("input", {
+                        staticClass: "input",
+                        attrs: { type: "number", placeholder: "0" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "control" }, [
+                      _c("span", { staticClass: "select" }, [
+                        _c("select", [
+                          _c("option", [_vm._v("L")]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("ml")]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("Kg")]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("g")]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("pieza")])
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "column is-12 field m-none p-b-0" }, [
+              _c("label", { staticClass: "label is-size-7-mobile" }, [
+                _vm._v("Descripción")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("textarea", {
+                  staticClass: "textarea",
+                  attrs: { placeholder: "Descripción del elemento", rows: 2 }
+                })
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "help has-text-right has-text-primary" }, [
+                _vm._v("150")
+              ])
+            ]),
+            _vm._v(" "),
+            _vm.tipo === "reactivos"
+              ? _c("div", { staticClass: "column is-12 field m-none p-b-0" }, [
+                  _c("label", { staticClass: "label is-size-7-mobile" }, [
+                    _vm._v("Riesgos")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "control" }, [
+                    _c("textarea", {
+                      staticClass: "textarea",
+                      attrs: {
+                        placeholder: "Descripción del elemento",
+                        rows: 2
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "help has-text-right has-text-primary" },
+                    [_vm._v("150")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "a",
+              { staticClass: "button is-rounded", on: { click: _vm.toto } },
+              [_vm._v("Agregar")]
+            )
+          ])
+        ],
+        2
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
