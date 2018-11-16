@@ -9,29 +9,29 @@
       </li>
     </ul>
     
-    <router-link :to="{ name: 'Elements', params: { tipo: 'todo' }}" class='menu-label has-text-white p-t-lg m-b-lg'>
+    <a class='menu-label has-text-white p-t-lg m-b-lg' @click='toTodo'>
       Inventario
-    </router-link>
+    </a>
     <ul class='menu-list'>
-      <li><router-link :to="{ name: 'Elements', params: { tipo: 'reactivos' }}">
-        <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-spa'></i></span>
+      <li><a @click='toReactivos'>
+        <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-spa '></i></span>
         <transition name='fade'>
           <span v-if='isActive'>Reactivos</span>
         </transition>
-      </router-link></li>
+      </a></li>
       
-      <li><router-link :to="{ name: 'Elements', params: { tipo: 'materiales' }}">
+      <li><a @click='toMateriales'>
         <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-bong'></i></span>
         <transition name='fade'>
           <span v-if='isActive'>Materiales</span>
         </transition>
-      </router-link></li>
-      <li><router-link :to="{ name: 'Elements', params: { tipo: 'equipo' }}">
-        <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-briefcase'></i></span>
+      </a></li>
+      <li><a @click='toEquipos'>
+        <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-briefcase '></i></span>
         <transition name='fade'>
           <span v-if='isActive'>Equipo</span>
         </transition>
-      </router-link></li>
+      </a></li>
     </ul>
   </aside>
 </template>
@@ -48,7 +48,23 @@
         this.isActive= !this.isActive
         this.$emit('toggleDrawer')
         // this.$router.push({ path: '/' })
-      }
+      },
+      toTodo () {
+        this.$store.$emit('todo')
+        this.$router.push({name: 'Elements'})
+      },
+      toEquipos () {
+        this.$store.$emit('equipos')
+        this.$router.push({name: 'Elements'})
+      },
+      toReactivos () {
+        this.$router.push({name: 'Elements'})
+        this.$store.$emit('reactivos')
+      },
+      toMateriales () {
+        this.$router.push({name: 'Elements'})
+        this.$store.$emit('materiales')
+      },
     }
   }
 </script>

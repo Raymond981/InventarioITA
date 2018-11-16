@@ -1514,6 +1514,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_v_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_v_calendar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_v_calendar_lib_v_calendar_min_css__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_v_calendar_lib_v_calendar_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_v_calendar_lib_v_calendar_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Store__ = __webpack_require__(84);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1529,16 +1530,21 @@ __webpack_require__(17);
 
 
 
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.devtools = true;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.performance = true;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.prototype.$store = __WEBPACK_IMPORTED_MODULE_7__Store__["a" /* default */];
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_v_calendar___default.a, {
     locale: 'es-MX',
     firstDayOfWeek: 2,
     datePickerShowDayPopover: false,
     datePickerTintColor: '#313e50'
 });
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.devtools = true;
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.performance = true;
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: __WEBPACK_IMPORTED_MODULE_2__routes__["a" /* routes */],
@@ -36055,13 +36061,12 @@ if (inBrowser && window.Vue) {
 
 var routes = [{
   path: '/',
-  name: 'Home',
-  component: __WEBPACK_IMPORTED_MODULE_0__views_Home_vue___default.a
-}, {
-  path: '/Elements/:tipo',
   name: 'Elements',
-  component: __WEBPACK_IMPORTED_MODULE_1__views_Elements_vue___default.a,
-  props: true
+  component: __WEBPACK_IMPORTED_MODULE_1__views_Elements_vue___default.a
+}, {
+  path: '/Elements',
+  name: 'Elements',
+  component: __WEBPACK_IMPORTED_MODULE_1__views_Elements_vue___default.a
 }];
 
 /***/ }),
@@ -36785,24 +36790,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     ElementCard: __WEBPACK_IMPORTED_MODULE_1__components_ElementCard_vue___default.a,
     BaseModal: __WEBPACK_IMPORTED_MODULE_2__components_BaseModal_vue___default.a
   },
-  props: {
-    tipo: {
-      type: String,
-      required: true
-    }
-  },
-  created: function created() {
-    this.getElements(this.tipo);
-  },
-  mounted: function mounted() {
-    this.getElements(this.tipo);
-    console.log('beforeUpdate');
-  },
   data: function data() {
     return {
       active: false,
       dates: [],
       elements: [],
+      tipo: '',
       element: {
         tipo: '',
         nombre: '',
@@ -36815,13 +36808,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     };
   },
+  created: function created() {
+    var _this = this;
+
+    this.$store.$on('todo', function () {
+      _this.tipo = 'todo';
+      _this.getElements();
+    });
+    this.$store.$on('equipos', function () {
+      _this.tipo = 'equipos';
+      _this.getElements();
+    });
+    this.$store.$on('materiales', function () {
+      _this.tipo = 'materiales';
+      _this.getElements();
+    });
+    this.$store.$on('reactivos', function () {
+      _this.tipo = 'reactivos';
+      _this.getElements();
+    });
+  },
 
   methods: {
-    getElements: function getElements(tipo) {
-      var _this = this;
+    getElements: function getElements() {
+      var _this2 = this;
 
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/Elements/reactivos').then(function (response) {
-        _this.elements = response.data.data;
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/Elements/' + this.tipo).then(function (response) {
+        _this2.elements = response.data.data;
       }).catch(function (e) {
         console.log(e);
       });
@@ -36832,6 +36845,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         console.log(data);
       });
+      this.getElements();
     }
   }
 });
@@ -37615,6 +37629,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.isActive = !this.isActive;
       this.$emit('toggleDrawer');
       // this.$router.push({ path: '/' })
+    },
+    toTodo: function toTodo() {
+      this.$store.$emit('todo');
+      this.$router.push({ name: 'Elements' });
+    },
+    toEquipos: function toEquipos() {
+      this.$store.$emit('equipos');
+      this.$router.push({ name: 'Elements' });
+    },
+    toReactivos: function toReactivos() {
+      this.$router.push({ name: 'Elements' });
+      this.$store.$emit('reactivos');
+    },
+    toMateriales: function toMateriales() {
+      this.$router.push({ name: 'Elements' });
+      this.$store.$emit('materiales');
     }
   }
 });
@@ -37627,115 +37657,82 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "aside",
-    { class: [{ open: _vm.isActive }, "menu p-l-xs"] },
-    [
-      _c("ul", { staticClass: "menu-list" }, [
+  return _c("aside", { class: [{ open: _vm.isActive }, "menu p-l-xs"] }, [
+    _c("ul", { staticClass: "menu-list" }, [
+      _c(
+        "li",
+        {
+          staticClass:
+            "has-text-white has-text-weight-semibold menu-header p-l-sm is-flex",
+          on: { click: _vm.toggleDrawer }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("transition", { attrs: { name: "fade" } }, [
+            _vm.isActive ? _c("span", [_vm._v("ITA")]) : _vm._e()
+          ])
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass: "menu-label has-text-white p-t-lg m-b-lg",
+        on: { click: _vm.toTodo }
+      },
+      [_vm._v("\n    Inventario\n  ")]
+    ),
+    _vm._v(" "),
+    _c("ul", { staticClass: "menu-list" }, [
+      _c("li", [
         _c(
-          "li",
-          {
-            staticClass:
-              "has-text-white has-text-weight-semibold menu-header p-l-sm is-flex",
-            on: { click: _vm.toggleDrawer }
-          },
+          "a",
+          { on: { click: _vm.toReactivos } },
           [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c("transition", { attrs: { name: "fade" } }, [
-              _vm.isActive ? _c("span", [_vm._v("ITA")]) : _vm._e()
+              _vm.isActive ? _c("span", [_vm._v("Reactivos")]) : _vm._e()
             ])
           ],
           1
         )
       ]),
       _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "menu-label has-text-white p-t-lg m-b-lg",
-          attrs: { to: { name: "Elements", params: { tipo: "todo" } } }
-        },
-        [_vm._v("\n    Inventario\n  ")]
-      ),
+      _c("li", [
+        _c(
+          "a",
+          { on: { click: _vm.toMateriales } },
+          [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.isActive ? _c("span", [_vm._v("Materiales")]) : _vm._e()
+            ])
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
-      _c("ul", { staticClass: "menu-list" }, [
+      _c("li", [
         _c(
-          "li",
+          "a",
+          { on: { click: _vm.toEquipos } },
           [
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: { name: "Elements", params: { tipo: "reactivos" } }
-                }
-              },
-              [
-                _c("span", { staticClass: "icon is-small m-r-sm" }, [
-                  _c("i", { staticClass: "fas fa-lg fa-spa" })
-                ]),
-                _vm._v(" "),
-                _c("transition", { attrs: { name: "fade" } }, [
-                  _vm.isActive ? _c("span", [_vm._v("Reactivos")]) : _vm._e()
-                ])
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: { name: "Elements", params: { tipo: "materiales" } }
-                }
-              },
-              [
-                _c("span", { staticClass: "icon is-small m-r-sm" }, [
-                  _c("i", { staticClass: "fas fa-lg fa-bong" })
-                ]),
-                _vm._v(" "),
-                _c("transition", { attrs: { name: "fade" } }, [
-                  _vm.isActive ? _c("span", [_vm._v("Materiales")]) : _vm._e()
-                ])
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c(
-              "router-link",
-              {
-                attrs: { to: { name: "Elements", params: { tipo: "equipo" } } }
-              },
-              [
-                _c("span", { staticClass: "icon is-small m-r-sm" }, [
-                  _c("i", { staticClass: "fas fa-lg fa-briefcase" })
-                ]),
-                _vm._v(" "),
-                _c("transition", { attrs: { name: "fade" } }, [
-                  _vm.isActive ? _c("span", [_vm._v("Equipo")]) : _vm._e()
-                ])
-              ],
-              1
-            )
+            _vm._m(3),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.isActive ? _c("span", [_vm._v("Equipo")]) : _vm._e()
+            ])
           ],
           1
         )
       ])
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -37744,6 +37741,30 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "icon is-medium m-r-sm" }, [
       _c("i", { staticClass: "fas fa-lg fa-x-ray" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small m-r-sm" }, [
+      _c("i", { staticClass: "fas fa-lg fa-spa " })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small m-r-sm" }, [
+      _c("i", { staticClass: "fas fa-lg fa-bong" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small m-r-sm" }, [
+      _c("i", { staticClass: "fas fa-lg fa-briefcase " })
     ])
   }
 ]
@@ -38345,6 +38366,17 @@ module.exports = function (css) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 83 */,
+/* 84 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a());
 
 /***/ })
 /******/ ]);

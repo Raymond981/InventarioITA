@@ -4,13 +4,12 @@ import Elements from './views/Elements.vue'
 export const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Elements',
+    component: Elements
   },
   {
-    path: '/Elements/:tipo',
+    path: '/Elements',
     name: 'Elements',
-    component: Elements,
-    props: true
+    component: Elements
   }
 ];

@@ -93,39 +93,43 @@ import axios from 'axios'
       ElementCard,
       BaseModal
     },
-    props: {
-      tipo: {
-        type: String,
-        required: true
+    data: () => ({
+      active: false,
+      dates: [],
+      elements: [],
+      tipo: '',
+      element: {
+        tipo: '',
+        nombre: '',
+        descripcion: '',
+        no_serie: '',
+        cantidad: 0,
+        mantenimiento1: '',
+        mantenimiento2: '',
+        eliminado: false
       }
-    },
+    }),
     created () {
-      this.getElements(this.tipo)
-    },
-    mounted () {
-      this.getElements(this.tipo)
-      console.log('beforeUpdate')
-    },
-    data () {
-      return {
-        active: false,
-        dates: [],
-        elements: [],
-        element: {
-          tipo: '',
-          nombre: '',
-          descripcion: '',
-          no_serie: '',
-          cantidad: 0,
-          mantenimiento1: '',
-          mantenimiento2: '',
-          eliminado: false
-        }
-      }
+      this.$store.$on('todo', () => {
+        this.tipo = 'todo'
+        this.getElements()
+      })
+      this.$store.$on('equipos', () => {
+        this.tipo = 'equipos'
+        this.getElements()
+      })
+      this.$store.$on('materiales', () => {
+        this.tipo = 'materiales'
+        this.getElements()
+      })
+      this.$store.$on('reactivos', () => {
+        this.tipo = 'reactivos'
+        this.getElements()
+      })
     },
     methods: {
-      getElements (tipo) {
-        axios.get('http://localhost:8000/api/Elements/reactivos')
+      getElements () {
+        axios.get(`http://localhost:8000/api/Elements/${this.tipo}`)
         .then(response => {
           this.elements = response.data.data
         })
@@ -137,6 +141,7 @@ import axios from 'axios'
         axios.get('http://localhost:8000/api/reactivos').then(({data})=>{
           console.log(data)
         })
+        this.getElements()
       }
     }
   }
