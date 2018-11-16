@@ -50,7 +50,7 @@
         // this.$router.push({ path: '/' })
       },
       toTodo () {
-        this.$store.$emit('todo')
+        this.$store.$emit('todos')
         this.$router.push({name: 'Elements'})
       },
       toEquipos () {

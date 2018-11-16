@@ -4,35 +4,38 @@ namespace Lab\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Lab\Elemento;
-use Lab\Http\Resources\ElementoResource as Toto;
+use Lab\Http\Resources\ElementoResource as Equipo;
+use Carbon\Carbon;
 
 class EquipoController extends Controller
 {
     public function index()
     {
         $elemento = Elemento::orderBy('nombre', 'desc')->where('tipo','equipo')->where('eliminado','=',0)->paginate(12);
-        return Toto::collection($elemento);
+        return Equipo::collection($elemento);
     }
 
 
     public function store(Request $request)
-    {
+    {   
         $elemento = new Elemento();
-        $elemento->tipo = $request->tipo;
+        $elemento->tipo = "equipo";
         $elemento->nombre = $request->nombre;
         $elemento->descripcion = $request->descripcion;
         $elemento->no_serie = $request->no_serie;
-        $elemento->cantidad = $request->cantidad;
+        $elemento->no_piezas = $request->no_piezas;
+        $elemento->mantenimiento1 = Carbon::parse($request->mantenimiento1);
+        $elemento->mantenimiento2 = Carbon::parse($request->mantenimiento2);
         $elemento->save();
-
-       return new Toto($elemento);
+        error_log($elemento);
+       return new Equipo($elemento);
     }
  
 
     public function show($id)
     {
         $elemento = Elemento::findOrFail($id);
-        return new Toto($elemento);   
+        return new Equipo($elemento);   
     }
 
 

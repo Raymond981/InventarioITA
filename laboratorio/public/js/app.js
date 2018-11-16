@@ -36672,7 +36672,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.p-b-0[data-v-02efde4a] {\n  padding-bottom: 0 !important;\n}\n.textarea[data-v-02efde4a] {\n  resize: none;\n}\n", ""]);
+exports.push([module.i, "\n.m-0[data-v-02efde4a] {\n  margin: 0 !important;\n}\n.p-b-0[data-v-02efde4a] {\n  padding-bottom: 0 !important;\n}\n.m-b-0[data-v-02efde4a] {\n  margin-bottom: 0 !important;\n}\n.textarea[data-v-02efde4a] {\n  resize: none;\n}\n", ""]);
 
 // exports
 
@@ -36792,6 +36792,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36808,13 +36815,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       active: false,
-      modalTodo: false,
-      modalEquipo: false,
-      modalMaterial: false,
-      modalReactivo: false,
       dates: [],
       elements: [],
-      tipo: '',
+      tipo: 'todos',
       element: {
         tipo: null,
         nombre: null,
@@ -36835,8 +36838,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
-    this.$store.$on('todo', function () {
-      _this.tipo = 'todo';
+    this.getElements();
+    this.$store.$on('todos', function () {
+      _this.tipo = 'todos';
       _this.getElements();
     });
     this.$store.$on('equipos', function () {
@@ -36863,32 +36867,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(e);
       });
     },
-    showModal: function showModal() {
-      this.active = true;
+    submit: function submit() {
+      var _this3 = this;
+
       switch (this.tipo) {
-        case 'todo':
-          this.modalTodo = true;
+        case 'todos':
           break;
         case 'equipos':
-          this.modalEquipo = true;
-          break;
-        case 'materiales':
-          this.modalMaterial = true;
+          this.element.mantenimiento1 = this.dates[0];
+          this.element.mantenimiento2 = this.dates[1];
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://localhost:8000/api/Elements/equipos', {
+            nombre: this.element.nombre,
+            descripcion: this.element.descripcion,
+            no_serie: this.element.no_serie,
+            no_piezas: this.element.no_piezas,
+            mantenimiento1: this.element.mantenimiento1,
+            mantenimiento2: this.element.mantenimiento2
+          }).then(function (response) {
+            console.log(response.data.data);
+            _this3.active = false;
+          }).catch(function (e) {
+            console.log(e.response);
+          });
           break;
         case 'reactivos':
-          this.modalReactivo = true;
+
           break;
+        case 'materiales':
+
+          break;
+
         default:
           break;
       }
-    },
-    submit: function submit() {
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/reactivos').then(function (_ref) {
-        var data = _ref.data;
-
-        console.log(data);
-      });
       this.getElements();
+    },
+    openModal: function openModal() {
+      this.active = !this.active;
+      this.initializeElement();
+    },
+    initializeElement: function initializeElement() {
+      this.element.nombre = null;
+      this.element.descripcion = null;
+      this.element.estado_fisico = null;
+      this.element.formula_quimica = null;
+      this.element.no_serie = null;
+      this.element.no_piezas = null;
+      this.element.cantidad = null;
+      this.element.unidad_medida = null;
+      this.element.mantenimiento1 = null;
+      this.element.mantenimiento2 = null;
+      this.element.eliminado = null;
     }
   }
 });
@@ -37105,7 +37134,7 @@ var render = function() {
             _c(
               "p",
               { class: [{ "has-text-white": _vm.element.mantenimiento }] },
-              [_vm._v(_vm._s(_vm.element.cantidad) + " elementos")]
+              [_vm._v(_vm._s(_vm.element.no_piezas) + " elementos")]
             )
           ]
         )
@@ -37174,7 +37203,7 @@ var render = function() {
         [
           _c("top-bar", {
             attrs: { element: _vm.tipo },
-            on: { open: _vm.showModal }
+            on: { open: _vm.openModal }
           })
         ],
         1
@@ -37209,7 +37238,8 @@ var render = function() {
             _c(
               "form",
               {
-                staticClass: "columns is-multiline is-mobile",
+                staticClass:
+                  "columns is-multiline is-mobile m-0 p-t-sm p-l-md p-r-md p-b-md",
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -37228,39 +37258,43 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _vm.tipo === "equipos"
-                  ? _c("div", { staticClass: "field column is-12" }, [
-                      _c("label", { staticClass: "label is-size-7-mobile" }, [
-                        _vm._v("Intervalo de mantenimientos")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "control" },
-                        [
-                          _c("v-date-picker", {
-                            attrs: {
-                              mode: "multiple",
-                              "input-props": {
-                                class: "input",
-                                placeholder: "Seleccione las fechas",
-                                readonly: true
-                              }
-                            },
-                            model: {
-                              value: _vm.dates,
-                              callback: function($$v) {
-                                _vm.dates = $$v
+                  ? _c(
+                      "div",
+                      { staticClass: "field column is-12 p-b-0 m-b-0" },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Intervalo de mantenimientos")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "control" },
+                          [
+                            _c("v-date-picker", {
+                              attrs: {
+                                mode: "multiple",
+                                "input-props": {
+                                  class: "input",
+                                  placeholder: "Seleccione las fechas",
+                                  readonly: true
+                                }
                               },
-                              expression: "dates"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
+                              model: {
+                                value: _vm.dates,
+                                callback: function($$v) {
+                                  _vm.dates = $$v
+                                },
+                                expression: "dates"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]
+                    )
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "field column is-12" }, [
+                _c("div", { staticClass: "field column is-12 p-b-0 m-b-0" }, [
                   _c("label", { staticClass: "label is-size-7-mobile" }, [
                     _vm._v("Nombre")
                   ]),
@@ -37295,7 +37329,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "field column is-6-tablet is-12-mobile" },
+                  {
+                    staticClass:
+                      "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                  },
                   [
                     _c("label", { staticClass: "label is-size-7-mobile" }, [
                       _vm._v("No. Serie")
@@ -37331,128 +37368,166 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "field column is-6-tablet is-12-mobile" },
-                  [
-                    _c("label", { staticClass: "label is-size-7-mobile" }, [
-                      _vm._v("Clase")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.element.clase,
-                            expression: "element.clase"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Nombre del elemento"
-                        },
-                        domProps: { value: _vm.element.clase },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                _vm.tipo === "reactivos"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                      },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Clase")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.element.clase,
+                                expression: "element.clase"
+                              }
+                            ],
+                            staticClass: "input",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Nombre del elemento"
+                            },
+                            domProps: { value: _vm.element.clase },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.element,
+                                  "clase",
+                                  $event.target.value
+                                )
+                              }
                             }
-                            _vm.$set(_vm.element, "clase", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]
-                ),
+                          })
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "field column is-6-tablet is-12-mobile" },
-                  [
-                    _c("label", { staticClass: "label is-size-7-mobile" }, [
-                      _vm._v("Estado físico")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.element.estado_fisico,
-                            expression: "element.estado_fisico"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Nombre del elemento"
-                        },
-                        domProps: { value: _vm.element.estado_fisico },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.element,
-                              "estado_fisico",
-                              $event.target.value
+                _vm.tipo === "reactivos"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                      },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Estado físico")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control is-expanded" }, [
+                          _c("div", { staticClass: "select is-fullwidth" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.element.estado_fisico,
+                                    expression: "element.estado_fisico"
+                                  }
+                                ],
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.element,
+                                      "estado_fisico",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", [_vm._v("líquido")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("sólido")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("gaseoso")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("plasma")])
+                              ]
                             )
-                          }
-                        }
-                      })
-                    ])
-                  ]
-                ),
+                          ])
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "field column is-6-tablet is-12-mobile" },
-                  [
-                    _c("label", { staticClass: "label is-size-7-mobile" }, [
-                      _vm._v("Fórmula química")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.element.formula_quimica,
-                            expression: "element.formula_quimica"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Nombre del elemento"
-                        },
-                        domProps: { value: _vm.element.formula_quimica },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                _vm.tipo === "reactivos"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                      },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Fórmula química")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.element.formula_quimica,
+                                expression: "element.formula_quimica"
+                              }
+                            ],
+                            staticClass: "input",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Nombre del elemento"
+                            },
+                            domProps: { value: _vm.element.formula_quimica },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.element,
+                                  "formula_quimica",
+                                  $event.target.value
+                                )
+                              }
                             }
-                            _vm.$set(
-                              _vm.element,
-                              "formula_quimica",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ])
-                  ]
-                ),
+                          })
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "field column is-6-tablet is-12-mobile" },
+                  {
+                    staticClass:
+                      "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                  },
                   [
                     _c("label", { staticClass: "label is-size-7-mobile" }, [
                       _vm._v("No. Piezas")
@@ -37488,94 +37563,107 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "column is-6-tablet is-12-mobile" }, [
-                  _c("label", { staticClass: "label is-size-7-mobile" }, [
-                    _vm._v("Cantidad")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "field has-addons has-addons-centered" },
-                    [
-                      _c("div", { staticClass: "control is-expanded" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.element.cantidad,
-                              expression: "element.cantidad"
-                            }
-                          ],
-                          staticClass: "input",
-                          attrs: { type: "number", placeholder: "0" },
-                          domProps: { value: _vm.element.cantidad },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.element,
-                                "cantidad",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "control" }, [
-                        _c("span", { staticClass: "select" }, [
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.element.unidad_medida,
-                                  expression: "element.unidad_medida"
+                _vm.tipo === "reactivos"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                      },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Cantidad")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "field has-addons has-addons-centered"
+                          },
+                          [
+                            _c("div", { staticClass: "control is-expanded" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.element.cantidad,
+                                    expression: "element.cantidad"
+                                  }
+                                ],
+                                staticClass: "input",
+                                attrs: { type: "number", placeholder: "0" },
+                                domProps: { value: _vm.element.cantidad },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.element,
+                                      "cantidad",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              ],
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.element,
-                                    "unidad_medida",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", [_vm._v("L")]),
-                              _vm._v(" "),
-                              _c("option", [_vm._v("ml")]),
-                              _vm._v(" "),
-                              _c("option", [_vm._v("Kg")]),
-                              _vm._v(" "),
-                              _c("option", [_vm._v("g")])
-                            ]
-                          )
-                        ])
-                      ])
-                    ]
-                  )
-                ]),
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "control" }, [
+                              _c("span", { staticClass: "select" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.element.unidad_medida,
+                                        expression: "element.unidad_medida"
+                                      }
+                                    ],
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.element,
+                                          "unidad_medida",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", [_vm._v("l")]),
+                                    _vm._v(" "),
+                                    _c("option", [_vm._v("ml")]),
+                                    _vm._v(" "),
+                                    _c("option", [_vm._v("Kg")]),
+                                    _vm._v(" "),
+                                    _c("option", [_vm._v("g")])
+                                  ]
+                                )
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "field column is-12" }, [
+                _c("div", { staticClass: "field column is-12 p-b-0 m-b-0" }, [
                   _c("label", { staticClass: "label is-size-7-mobile" }, [
                     _vm._v("Descripción")
                   ]),
@@ -37619,7 +37707,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c(
-                  "a",
+                  "button",
                   { staticClass: "button is-rounded is-fullwidth is-primary" },
                   [_vm._v("Agregar")]
                 )
@@ -37918,7 +38006,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // this.$router.push({ path: '/' })
     },
     toTodo: function toTodo() {
-      this.$store.$emit('todo');
+      this.$store.$emit('todos');
       this.$router.push({ name: 'Elements' });
     },
     toEquipos: function toEquipos() {
@@ -38125,7 +38213,7 @@ function initialize(router) {
     });
 
     axios.interceptors.response.use(null, function (error) {
-        if (error.resposne.status == 401) {
+        if (error.response.status == 401) {
             //store.commit('logout');
             router.push('/login');
         }

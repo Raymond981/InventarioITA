@@ -27,7 +27,7 @@
         </p>
       </div>
       <div class="column is-3-tablet is-12-mobile centered p-t-0">
-        <p :class="[{'has-text-white': element.mantenimiento}]">{{element.cantidad}} elementos</p>
+        <p :class="[{'has-text-white': element.mantenimiento}]">{{element.no_piezas}} elementos</p>
       </div>
     </div>
   </div>

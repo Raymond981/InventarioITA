@@ -25,8 +25,8 @@ class CreateElementosTable extends Migration
             $table->integer('no_piezas')->nullable();
             $table->float('cantidad')->nullable();
             $table->string('unidad_medida',10)->nullable();
-            $table->date('mantenimiento1')->nullable();
-            $table->date('mantenimiento2')->nullable();
+            $table->dateTime('mantenimiento1')->nullable();
+            $table->dateTime('mantenimiento2')->nullable();
             $table->boolean('eliminado')->default(0);
             $table->timestamps();
         });
