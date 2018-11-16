@@ -6,10 +6,5 @@ export const routes = [
     path: '/',
     name: 'Elements',
     component: Elements
-  },
-  {
-    path: '/Elements',
-    name: 'Elements',
-    component: Elements
   }
 ];

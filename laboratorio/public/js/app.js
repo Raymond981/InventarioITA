@@ -36063,10 +36063,6 @@ var routes = [{
   path: '/',
   name: 'Elements',
   component: __WEBPACK_IMPORTED_MODULE_1__views_Elements_vue___default.a
-}, {
-  path: '/Elements',
-  name: 'Elements',
-  component: __WEBPACK_IMPORTED_MODULE_1__views_Elements_vue___default.a
 }];
 
 /***/ }),
@@ -36777,6 +36773,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36793,17 +36808,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       active: false,
+      modalTodo: false,
+      modalEquipo: false,
+      modalMaterial: false,
+      modalReactivo: false,
       dates: [],
       elements: [],
       tipo: '',
       element: {
-        tipo: '',
-        nombre: '',
-        descripcion: '',
-        no_serie: '',
-        cantidad: 0,
-        mantenimiento1: '',
-        mantenimiento2: '',
+        tipo: null,
+        nombre: null,
+        descripcion: null,
+        clase: null,
+        estado_fisico: null,
+        formula_quimica: null,
+        no_serie: null,
+        no_piezas: null,
+        cantidad: null,
+        unidad_medida: null,
+        mantenimiento1: null,
+        mantenimiento2: null,
         eliminado: false
       }
     };
@@ -36838,6 +36862,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (e) {
         console.log(e);
       });
+    },
+    showModal: function showModal() {
+      this.active = true;
+      switch (this.tipo) {
+        case 'todo':
+          this.modalTodo = true;
+          break;
+        case 'equipos':
+          this.modalEquipo = true;
+          break;
+        case 'materiales':
+          this.modalMaterial = true;
+          break;
+        case 'reactivos':
+          this.modalReactivo = true;
+          break;
+        default:
+          break;
+      }
     },
     submit: function submit() {
       __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/reactivos').then(function (_ref) {
@@ -37062,7 +37105,7 @@ var render = function() {
             _c(
               "p",
               { class: [{ "has-text-white": _vm.element.mantenimiento }] },
-              [_vm._v(_vm._s(_vm.element.cantidad) + " elements")]
+              [_vm._v(_vm._s(_vm.element.cantidad) + " elementos")]
             )
           ]
         )
@@ -37131,11 +37174,7 @@ var render = function() {
         [
           _c("top-bar", {
             attrs: { element: _vm.tipo },
-            on: {
-              open: function($event) {
-                _vm.active = !_vm.active
-              }
-            }
+            on: { open: _vm.showModal }
           })
         ],
         1
@@ -37170,7 +37209,7 @@ var render = function() {
             _c(
               "form",
               {
-                staticClass: "p-t-sm p-l-md p-r-md p-b-md",
+                staticClass: "columns is-multiline is-mobile",
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -37189,7 +37228,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _vm.tipo === "equipos"
-                  ? _c("div", { staticClass: "field" }, [
+                  ? _c("div", { staticClass: "field column is-12" }, [
                       _c("label", { staticClass: "label is-size-7-mobile" }, [
                         _vm._v("Intervalo de mantenimientos")
                       ]),
@@ -37221,36 +37260,235 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "field" }, [
+                _c("div", { staticClass: "field column is-12" }, [
                   _c("label", { staticClass: "label is-size-7-mobile" }, [
                     _vm._v("Nombre")
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "control" }, [
                     _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.element.nombre,
+                          expression: "element.nombre"
+                        }
+                      ],
                       staticClass: "input",
                       attrs: {
                         type: "text",
                         placeholder: "Nombre del elemento"
+                      },
+                      domProps: { value: _vm.element.nombre },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.element, "nombre", $event.target.value)
+                        }
                       }
                     })
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "field" }, [
-                  _c("label", { staticClass: "label is-size-7-mobile" }, [
-                    _vm._v("No. Serie")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "control" }, [
-                    _c("input", {
-                      staticClass: "input",
-                      attrs: { type: "text", placeholder: "Número de serie" }
-                    })
-                  ])
-                ]),
+                _c(
+                  "div",
+                  { staticClass: "field column is-6-tablet is-12-mobile" },
+                  [
+                    _c("label", { staticClass: "label is-size-7-mobile" }, [
+                      _vm._v("No. Serie")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.element.no_serie,
+                            expression: "element.no_serie"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text", placeholder: "Número de serie" },
+                        domProps: { value: _vm.element.no_serie },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.element,
+                              "no_serie",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
                 _vm._v(" "),
-                _c("div", {}, [
+                _c(
+                  "div",
+                  { staticClass: "field column is-6-tablet is-12-mobile" },
+                  [
+                    _c("label", { staticClass: "label is-size-7-mobile" }, [
+                      _vm._v("Clase")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.element.clase,
+                            expression: "element.clase"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del elemento"
+                        },
+                        domProps: { value: _vm.element.clase },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.element, "clase", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "field column is-6-tablet is-12-mobile" },
+                  [
+                    _c("label", { staticClass: "label is-size-7-mobile" }, [
+                      _vm._v("Estado físico")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.element.estado_fisico,
+                            expression: "element.estado_fisico"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del elemento"
+                        },
+                        domProps: { value: _vm.element.estado_fisico },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.element,
+                              "estado_fisico",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "field column is-6-tablet is-12-mobile" },
+                  [
+                    _c("label", { staticClass: "label is-size-7-mobile" }, [
+                      _vm._v("Fórmula química")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.element.formula_quimica,
+                            expression: "element.formula_quimica"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del elemento"
+                        },
+                        domProps: { value: _vm.element.formula_quimica },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.element,
+                              "formula_quimica",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "field column is-6-tablet is-12-mobile" },
+                  [
+                    _c("label", { staticClass: "label is-size-7-mobile" }, [
+                      _vm._v("No. Piezas")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.element.no_piezas,
+                            expression: "element.no_piezas"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text", placeholder: "Número de serie" },
+                        domProps: { value: _vm.element.no_piezas },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.element,
+                              "no_piezas",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-6-tablet is-12-mobile" }, [
                   _c("label", { staticClass: "label is-size-7-mobile" }, [
                     _vm._v("Cantidad")
                   ]),
@@ -37261,41 +37499,114 @@ var render = function() {
                     [
                       _c("div", { staticClass: "control is-expanded" }, [
                         _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.element.cantidad,
+                              expression: "element.cantidad"
+                            }
+                          ],
                           staticClass: "input",
-                          attrs: { type: "number", placeholder: "0" }
+                          attrs: { type: "number", placeholder: "0" },
+                          domProps: { value: _vm.element.cantidad },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.element,
+                                "cantidad",
+                                $event.target.value
+                              )
+                            }
+                          }
                         })
                       ]),
                       _vm._v(" "),
                       _c("p", { staticClass: "control" }, [
                         _c("span", { staticClass: "select" }, [
-                          _c("select", [
-                            _c("option", [_vm._v("L")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("ml")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Kg")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("g")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("pieza")])
-                          ])
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.element.unidad_medida,
+                                  expression: "element.unidad_medida"
+                                }
+                              ],
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.element,
+                                    "unidad_medida",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", [_vm._v("L")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("ml")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("Kg")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("g")])
+                            ]
+                          )
                         ])
                       ])
                     ]
                   )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "field" }, [
+                _c("div", { staticClass: "field column is-12" }, [
                   _c("label", { staticClass: "label is-size-7-mobile" }, [
                     _vm._v("Descripción")
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "control" }, [
                     _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.element.descripcion,
+                          expression: "element.descripcion"
+                        }
+                      ],
                       staticClass: "textarea",
                       attrs: {
                         placeholder: "Descripción del elemento",
                         rows: 2
+                      },
+                      domProps: { value: _vm.element.descripcion },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.element,
+                            "descripcion",
+                            $event.target.value
+                          )
+                        }
                       }
                     })
                   ]),
@@ -37306,30 +37617,6 @@ var render = function() {
                     [_vm._v("150")]
                   )
                 ]),
-                _vm._v(" "),
-                _vm.tipo === "reactivos"
-                  ? _c("div", { staticClass: "field" }, [
-                      _c("label", { staticClass: "label is-size-7-mobile" }, [
-                        _vm._v("Riesgos")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "control" }, [
-                        _c("textarea", {
-                          staticClass: "textarea",
-                          attrs: {
-                            placeholder: "Descripción del elemento",
-                            rows: 2
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        { staticClass: "help has-text-right has-text-primary" },
-                        [_vm._v("150")]
-                      )
-                    ])
-                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "a",

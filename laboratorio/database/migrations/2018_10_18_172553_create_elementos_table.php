@@ -15,14 +15,19 @@ class CreateElementosTable extends Migration
     {
         Schema::create('elementos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo',10);
-            $table->string('nombre',100);
-            $table->string('descripcion',150);
-            $table->string('no_serie', 100);
-            $table->float('cantidad');
+            $table->string('tipo',10)->nullable();
+            $table->string('nombre',100)->nullable();
+            $table->string('descripcion',150)->nullable();
+            $table->float('clase')->nullable();
+            $table->string('estado_fisico',20)->nullable();
+            $table->string('formula_quimica',150)->nullable();
+            $table->string('no_serie', 100)->nullable();
+            $table->integer('no_piezas')->nullable();
+            $table->float('cantidad')->nullable();
+            $table->string('unidad_medida',10)->nullable();
             $table->date('mantenimiento1')->nullable();
             $table->date('mantenimiento2')->nullable();
-            $table->boolean('eliminado')->default(false);
+            $table->boolean('eliminado')->default(0);
             $table->timestamps();
         });
     }
