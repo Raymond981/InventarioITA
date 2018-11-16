@@ -15,7 +15,7 @@
           </div>
           <div class="dropdown-menu" role="menu">
             <div class="dropdown-content">
-              <a class="dropdown-item is-size-7-mobile">Eliminar</a>
+              <a class="dropdown-item is-size-7-mobile" @click='openDeleteModal'>Eliminar</a>
               <a class="dropdown-item is-size-7-mobile">Editar</a>
             </div>
           </div>
@@ -43,6 +43,11 @@
         required: true
       }
     },
+    methods: {
+      openDeleteModal () {
+        this.$emit('openDeleteModal', this.element.id)
+      }
+    }
   }
 </script>
 

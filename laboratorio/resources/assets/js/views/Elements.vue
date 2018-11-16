@@ -5,7 +5,7 @@
     </div>
     <div class='column is-12'>
       <div class="columns is-multiline is-mobile is-centered">
-        <element-card class='column is-11 m-b-md' v-for='element in elements' :key='element.id' :element='element'></element-card>
+        <element-card class='column is-11 m-b-md' v-for='element in elements' :key='element.id' :element='element' @openDeleteModal='setDeleteModal'></element-card>
       </div>
     </div>
 
@@ -103,6 +103,14 @@
         </form>
       </template>
     </base-modal>
+
+    <base-modal :active='activeDeleteModal' @close='activeDeleteModal=!activeDeleteModal'>
+      <template slot='modal-content'>
+        <p>¿Deseas borrar el elemento permanentemente de nuestros registros?</p>
+        <button class="button is-rounded is-primary">No</button>
+        <button class="button is-rounded is-primary">Si</button>
+      </template>
+    </base-modal>
   </div>
 </template>
 
@@ -121,6 +129,7 @@ import axios from 'axios'
     },
     data: () => ({
       active: false,
+      activeDeleteModal: false,
       dates: [],
       elements: [],
       tipo: 'todos',
@@ -185,7 +194,6 @@ import axios from 'axios'
               mantenimiento2: this.element.mantenimiento2
             })
             .then(response => {
-              console.log(response.data.data)
               this.active = false
             })
             .catch( e => {
@@ -193,10 +201,37 @@ import axios from 'axios'
             })
             break
           case 'reactivos':
-            
+            axios.post('http://localhost:8000/api/Elements/reactivos', {
+              nombre: this.element.nombre,
+              descripcion: this.element.descripcion,
+              clase: this.element.clase,
+              estado_fisico: this.element.estado_fisico,
+              formula_quimica: this.element.formula_quimica,
+              no_serie: this.element.no_serie,
+              no_piezas: this.element.no_piezas,
+              cantidad: this.element.cantidad,
+              unidad_medida: this.element.unidad_medida
+            })
+            .then(response => {
+              this.active = false
+            })
+            .catch( e => {
+              console.log(e.response)
+            })
             break
           case 'materiales':
-            
+            axios.post('http://localhost:8000/api/Elements/materiales', {
+              nombre: this.element.nombre,
+              descripcion: this.element.descripcion,
+              no_serie: this.element.no_serie,
+              no_piezas: this.element.no_piezas
+            })
+            .then(response => {
+              this.active = false
+            })
+            .catch( e => {
+              console.log(e.response)
+            })
             break
         
           default:
