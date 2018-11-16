@@ -1,7 +1,7 @@
 <template>
   <div class='columns is-mobile is-multiline p-t-sm p-r-sm p-l-sm'>
     <div class='column is-12 m-b-md'>
-      <top-bar :element='tipo' @open='openCreateModal'></top-bar>
+      <top-bar :element='tipo' @open='openCreateModal' @search='search'></top-bar>
     </div>
     <div class='column is-12'>
       <div class="columns is-multiline is-mobile is-centered">
@@ -478,6 +478,18 @@ import axios from 'axios'
         this.element.mantenimiento1 = null
         this.element.mantenimiento2 = null
         this.element.eliminado = null
+      },
+      search (name) {
+        console.log(name)
+        axios.post('http://localhost:8000/api/Elements/search', {
+          search: name
+        })
+        .then(response => {
+          this.elements = response.data
+        })
+        .catch( e => {
+          console.log(e.response)
+        })
       }
     }
   }
