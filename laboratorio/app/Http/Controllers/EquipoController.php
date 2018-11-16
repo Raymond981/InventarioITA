@@ -11,7 +11,7 @@ class EquipoController extends Controller
 {
     public function index()
     {
-        $elemento = Elemento::orderBy('nombre', 'desc')->where('tipo','equipo')->where('eliminado','=',0)->paginate(12);
+        $elemento = Elemento::orderBy('nombre', 'asc')->where('tipo','equipo')->where('eliminado','=',0)->get();
         return Equipo::collection($elemento);
     }
 
