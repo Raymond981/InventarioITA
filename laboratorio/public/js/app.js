@@ -36291,9 +36291,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       required: true
     }
   },
+  data: function data() {
+    return {
+      elementSearched: ''
+    };
+  },
   methods: {
     open: function open() {
       this.$emit('open');
+    },
+    search: function search() {
+      this.$emit('search', this.elementSearched);
     }
   }
 });
@@ -36307,62 +36315,122 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "columns is-mobile is-multiline" }, [
-    _c("div", { staticClass: "column is-4 is-hidden-tablet p-b-none" }, [
-      _c(
-        "p",
-        {
-          staticClass:
-            "has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered is-capitalized"
-        },
-        [_vm._v(_vm._s(_vm.element))]
-      )
-    ]),
+    _c(
+      "div",
+      {
+        class: [
+          "column is-hidden-tablet p-b-none",
+          { "is-12 has-text-centered": _vm.element === "todos" },
+          { "is-4": _vm.element !== "todos" }
+        ]
+      },
+      [
+        _c(
+          "p",
+          {
+            staticClass:
+              "has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered is-capitalized"
+          },
+          [_vm._v(_vm._s(_vm.element))]
+        )
+      ]
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "column is-7 is-hidden-tablet p-b-none" }, [
-      _c(
-        "a",
-        {
-          staticClass: "button is-rounded is-primary",
-          on: { click: _vm.open }
-        },
-        [_vm._m(0), _vm._v(" "), _c("span", [_vm._v("Nuevo registro")])]
-      )
-    ]),
+    _vm.element !== "todos"
+      ? _c("div", { staticClass: "column is-7 is-hidden-tablet p-b-none" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button is-rounded is-primary",
+              on: { click: _vm.open }
+            },
+            [_vm._m(0), _vm._v(" "), _c("span", [_vm._v("Nuevo registro")])]
+          )
+        ])
+      : _vm._e(),
     _vm._v(" "),
-    _c("div", { staticClass: "column is-3-tablet is-hidden-mobile" }, [
-      _c(
-        "p",
-        {
-          staticClass:
-            "has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered is-capitalized"
-        },
-        [_vm._v(_vm._s(_vm.element))]
-      )
-    ]),
+    _c(
+      "div",
+      {
+        class: [
+          "column is-hidden-mobile",
+          { "is-3 has-text-centered": _vm.element === "todos" },
+          { "is-3-tablet": _vm.element !== "todos" }
+        ]
+      },
+      [
+        _c(
+          "p",
+          {
+            staticClass:
+              "has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered is-capitalized"
+          },
+          [_vm._v(_vm._s(_vm.element))]
+        )
+      ]
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "column is-6-tablet is-12-mobile" }, [
-      _c("div", { staticClass: "field has-addons" }, [
-        _c("div", { staticClass: "control is-expanded" }, [
-          _c("input", {
-            staticClass: "input is-rounded",
-            attrs: { type: "text", placeholder: "Buscar " + _vm.element }
-          })
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
-      ])
-    ]),
+    _c(
+      "div",
+      {
+        class: [
+          "column is-12-mobile",
+          { "is-7-tablet is-centered": _vm.element === "todos" },
+          { "is-6-tablet": _vm.element !== "todos" }
+        ]
+      },
+      [
+        _c("div", { staticClass: "field has-addons" }, [
+          _c("div", { staticClass: "control is-expanded" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.elementSearched,
+                  expression: "elementSearched"
+                }
+              ],
+              staticClass: "input is-rounded",
+              attrs: { type: "text", placeholder: "Buscar " + _vm.element },
+              domProps: { value: _vm.elementSearched },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.elementSearched = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "control" }, [
+            _c(
+              "a",
+              {
+                staticClass: "button is-info is-rounded",
+                on: { click: _vm.search }
+              },
+              [_vm._m(1)]
+            )
+          ])
+        ])
+      ]
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "column is-3-tablet is-hidden-mobile" }, [
-      _c(
-        "a",
-        {
-          staticClass: "button is-rounded is-primary",
-          on: { click: _vm.open }
-        },
-        [_vm._m(2), _vm._v(" "), _c("span", [_vm._v("Nuevo registro")])]
-      )
-    ])
+    _vm.element !== "todos"
+      ? _c("div", { staticClass: "column is-3-tablet is-hidden-mobile" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button is-rounded is-primary",
+              on: { click: _vm.open }
+            },
+            [_vm._m(2), _vm._v(" "), _c("span", [_vm._v("Nuevo registro")])]
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -36378,12 +36446,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "control" }, [
-      _c("a", { staticClass: "button is-info is-rounded" }, [
-        _c("span", { staticClass: "icon" }, [
-          _c("i", { staticClass: "fas fa-search" })
-        ])
-      ])
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fas fa-search" })
     ])
   },
   function() {
@@ -37168,6 +37232,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.element.mantenimiento1 = null;
       this.element.mantenimiento2 = null;
       this.element.eliminado = null;
+    },
+    search: function search(name) {
+      var _this8 = this;
+
+      console.log(name);
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://localhost:8000/api/Elements/search', {
+        search: name
+      }).then(function (response) {
+        _this8.elements = response.data;
+      }).catch(function (e) {
+        console.log(e.response);
+      });
     }
   }
 });
@@ -37469,7 +37545,7 @@ var render = function() {
         [
           _c("top-bar", {
             attrs: { element: _vm.tipo },
-            on: { open: _vm.openCreateModal }
+            on: { open: _vm.openCreateModal, search: _vm.search }
           })
         ],
         1
