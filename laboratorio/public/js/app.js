@@ -36166,7 +36166,7 @@ var content = __webpack_require__(47);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("8097229e", content, false, {});
+var update = __webpack_require__(3)("45f9ea51", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -36234,6 +36234,8 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -36380,42 +36382,56 @@ var render = function() {
         ]
       },
       [
-        _c("div", { staticClass: "field has-addons" }, [
-          _c("div", { staticClass: "control is-expanded" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.elementSearched,
-                  expression: "elementSearched"
+        _c(
+          "form",
+          {
+            on: {
+              keydown: function($event) {
+                if (
+                  !("button" in $event) &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
                 }
-              ],
-              staticClass: "input is-rounded",
-              attrs: { type: "text", placeholder: "Buscar " + _vm.element },
-              domProps: { value: _vm.elementSearched },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.elementSearched = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c(
-              "a",
-              {
-                staticClass: "button is-info is-rounded",
-                on: { click: _vm.search }
+                $event.preventDefault()
+                return _vm.search($event)
               },
-              [_vm._m(1)]
-            )
-          ])
-        ])
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.search($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "field has-addons" }, [
+              _c("div", { staticClass: "control is-expanded" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.elementSearched,
+                      expression: "elementSearched"
+                    }
+                  ],
+                  staticClass: "input is-rounded",
+                  attrs: { type: "text", placeholder: "Buscar " + _vm.element },
+                  domProps: { value: _vm.elementSearched },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.elementSearched = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]
+        )
       ]
     ),
     _vm._v(" "),
@@ -36446,8 +36462,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fas fa-search" })
+    return _c("div", { staticClass: "control" }, [
+      _c("button", { staticClass: "button is-info is-rounded" }, [
+        _c("span", { staticClass: "icon" }, [
+          _c("i", { staticClass: "fas fa-search" })
+        ])
+      ])
     ])
   },
   function() {
@@ -36479,7 +36499,7 @@ var content = __webpack_require__(52);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("3f012fcd", content, false, {});
+var update = __webpack_require__(3)("e262dfa6", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -36712,7 +36732,7 @@ var content = __webpack_require__(58);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("2943e37d", content, false, {});
+var update = __webpack_require__(3)("ea746b3a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -36736,7 +36756,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.m-0[data-v-02efde4a] {\n  margin: 0 !important;\n}\n.p-b-0[data-v-02efde4a] {\n  padding-bottom: 0 !important;\n}\n.m-b-0[data-v-02efde4a] {\n  margin-bottom: 0 !important;\n}\n.textarea[data-v-02efde4a] {\n  resize: none;\n}\n", ""]);
+exports.push([module.i, "\n.m-0[data-v-02efde4a] {\n  margin: 0 !important;\n}\n.p-b-0[data-v-02efde4a] {\n  padding-bottom: 0 !important;\n}\n.m-b-0[data-v-02efde4a] {\n  margin-bottom: 0 !important;\n}\n.textarea[data-v-02efde4a] {\n  resize: none;\n}\n.delete-modal-top[data-v-02efde4a] {\n  height: 10em;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.circle[data-v-02efde4a] {\n  height: 8em;\n  width: 8em;\n  border-radius: 5em;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.left-button[data-v-02efde4a] {\n  width: 8em;\n}\n.right-button[data-v-02efde4a] {\n  width: 8em;\n}\n", ""]);
 
 // exports
 
@@ -36755,6 +36775,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_BaseModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_BaseModal_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37236,7 +37273,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     search: function search(name) {
       var _this8 = this;
 
-      console.log(name);
       __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://localhost:8000/api/Elements/search', {
         search: name
       }).then(function (response) {
@@ -37310,7 +37346,7 @@ var content = __webpack_require__(62);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("2bd66bf3", content, false, {});
+var update = __webpack_require__(3)("8465975a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -37588,6 +37624,16 @@ var render = function() {
                   "columns is-multiline is-mobile m-0 p-t-sm p-l-md p-r-md p-b-md",
                 on: {
                   submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.submit($event)
+                  },
+                  keydown: function($event) {
+                    if (
+                      !("button" in $event) &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
                     $event.preventDefault()
                     return _vm.submit($event)
                   }
@@ -38076,36 +38122,64 @@ var render = function() {
         },
         [
           _c("template", { slot: "modal-content" }, [
-            _c("p", [
-              _vm._v(
-                "¿Deseas borrar el " +
-                  _vm._s(_vm.element.tipo) +
-                  " " +
-                  _vm._s(_vm.element.nombre) +
-                  " permanentemente de nuestros registros?"
-              )
+            _c("div", { staticClass: "delete-modal-top" }, [
+              _c("div", { staticClass: "circle has-background-danger" }, [
+                _c("span", { staticClass: "icon is-large has-text-white" }, [
+                  _c("i", { staticClass: "fas fa-3x fa-trash-alt" })
+                ])
+              ])
             ]),
             _vm._v(" "),
             _c(
-              "button",
+              "p",
               {
-                staticClass: "button is-rounded is-primary",
-                on: {
-                  click: function($event) {
-                    _vm.activeDeleteModal = !_vm.activeDeleteModal
-                  }
-                }
+                staticClass:
+                  "is-size-5-tablet is-size-6-mobile has-text-centered"
               },
-              [_vm._v("No")]
+              [
+                _vm._v("\n        ¿Deseas borrar el \n        "),
+                _c("strong", [
+                  _vm._v(
+                    _vm._s(_vm.element.tipo) +
+                      " " +
+                      _vm._s(_vm.element.nombre) +
+                      " "
+                  )
+                ]),
+                _vm._v("\n         de nuestros registros?\n      ")
+              ]
             ),
             _vm._v(" "),
             _c(
-              "button",
-              {
-                staticClass: "button is-rounded is-primary",
-                on: { click: _vm.deleteElement }
-              },
-              [_vm._v("Si")]
+              "div",
+              { staticClass: "columns is-mobile is-multiline is-centered m-0" },
+              [
+                _c("div", { staticClass: "column is-6 has-text-centered" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "button is-rounded is-danger left-button",
+                      on: {
+                        click: function($event) {
+                          _vm.activeDeleteModal = !_vm.activeDeleteModal
+                        }
+                      }
+                    },
+                    [_vm._v("No")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-6 has-text-centered" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "button is-rounded is-success right-button",
+                      on: { click: _vm.deleteElement }
+                    },
+                    [_vm._v("Si")]
+                  )
+                ])
+              ]
             )
           ])
         ],
@@ -38682,7 +38756,7 @@ var content = __webpack_require__(68);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("6a820bd8", content, false, {});
+var update = __webpack_require__(3)("2354b032", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -38806,7 +38880,7 @@ var content = __webpack_require__(72);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("04c3f1d4", content, false, {});
+var update = __webpack_require__(3)("299b6574", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

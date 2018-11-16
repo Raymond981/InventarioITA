@@ -16,18 +16,20 @@
       <p class='has-text-weight-semibold has-text-primary is-size-5-tablet has-text-centered is-capitalized'>{{element}}</p>
     </div>
     <div :class='["column is-12-mobile" ,{"is-7-tablet is-centered":element==="todos"},{"is-6-tablet":element!=="todos"}]'>
-      <div class='field has-addons'>
-        <div class='control is-expanded'>
-          <input class='input is-rounded' type='text' :placeholder="'Buscar ' + element" v-model='elementSearched'>
+      <form @keydown.enter.prevent='search' @submit.prevent='search'>
+        <div class='field has-addons'>
+          <div class='control is-expanded'>
+            <input class='input is-rounded' type='text' :placeholder="'Buscar ' + element" v-model='elementSearched'>
+          </div>
+          <div class='control'>
+            <button class='button is-info is-rounded'>
+              <span class='icon'>
+                <i class='fas fa-search'></i>
+              </span>
+            </button>
+          </div>
         </div>
-        <div class='control'>
-          <a class='button is-info is-rounded' @click='search'>
-            <span class='icon'>
-              <i class='fas fa-search'></i>
-            </span>
-          </a>
-        </div>
-      </div>
+      </form>
     </div>
     <div class='column is-3-tablet is-hidden-mobile' v-if='element!=="todos"'>
       <a class="button is-rounded is-primary" @click="open">

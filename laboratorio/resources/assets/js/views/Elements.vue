@@ -12,7 +12,7 @@
     <!-- crear -->
     <base-modal :active='active' @close='active=!active'>
       <template slot='modal-content'>
-        <form class='columns is-multiline is-mobile m-0 p-t-sm p-l-md p-r-md p-b-md' @submit.prevent='submit'>
+        <form class='columns is-multiline is-mobile m-0 p-t-sm p-l-md p-r-md p-b-md' @submit.prevent='submit' @keydown.enter.prevent='submit'>
           <p class='column is-12 has-text-weight-bold has-text-centered is-size-5 m-none'>Nuevo {{tipo}}</p>
           
           <div class='field column is-12 p-b-0 m-b-0' v-if="tipo==='equipos'">
