@@ -19,7 +19,7 @@ class ExcelExport extends Controller
     function excel($tipo){
 
     	if($tipo == "todo"){
-    		$products = Elemento::select('id','tipo','nombre','descripcion','clase','estado_fisico','formula_quimica','no_serie','cantidad','unidad_medida')->where('eliminado','=',0)->get()->toArray();
+    		$products = Elemento::select('id','tipo','nombre','descripcion','clase','estado_fisico','formula_quimica','no_serie','no_piezas','cantidad','unidad_medida')->where('eliminado','=',0)->get()->toArray();
     	}else if($tipo == "reactivo" || $tipo == "equipo" || $tipo == "material"){
     		$products = Elemento::select('id','tipo','nombre','descripcion','clase','estado_fisico','formula_quimica','no_serie','cantidad','unidad_medida')->where('eliminado','=',0)->where('tipo',$tipo)->get()->toArray();
     	}
