@@ -22,6 +22,7 @@ Route::apiResource('Elements/materiales', 'MaterialController');
 Route::apiResource('Elements/equipos', 'EquipoController');
 Route::apiResource('Elements/todos', 'TodoController');
 Route::get('Elements/search', 'SearchController@search');
+Route::get('Elements/excel/{tipo}', 'ExcelExport@excel')->name('export.excel');
 // Route::apiResource('Elements/materiales', 'MaterialController')->middleware('cors');
 // Route::apiResource('Elements/equipos', 'EquipoController')->middleware('cors');
 
