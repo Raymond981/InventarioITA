@@ -21,8 +21,10 @@ Route::apiResource('Elements/reactivos', 'ReactivoController');
 Route::apiResource('Elements/materiales', 'MaterialController');
 Route::apiResource('Elements/equipos', 'EquipoController');
 Route::apiResource('Elements/todos', 'TodoController');
-Route::get('Elements/search', 'SearchController@search');
+Route::post('Elements/search', 'SearchController@search');
 Route::get('Elements/excel/{tipo}', 'ExcelExport@excel')->name('export.excel');
+Route::post('/subir/import', 'ExcelExport@import')->name('import');
+Route::get('/subir', 'ExcelExport@index')->name('index');
 // Route::apiResource('Elements/materiales', 'MaterialController')->middleware('cors');
 // Route::apiResource('Elements/equipos', 'EquipoController')->middleware('cors');
 
