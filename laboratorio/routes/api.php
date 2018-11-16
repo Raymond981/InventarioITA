@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('Elements/reactivos', 'ReactivoController');
 Route::apiResource('Elements/materiales', 'MaterialController');
 Route::apiResource('Elements/equipos', 'EquipoController');
+Route::apiResource('Elements/todos', 'TodoController');
 Route::get('Elements/search', 'SearchController@search');
 // Route::apiResource('Elements/materiales', 'MaterialController')->middleware('cors');
 // Route::apiResource('Elements/equipos', 'EquipoController')->middleware('cors');
