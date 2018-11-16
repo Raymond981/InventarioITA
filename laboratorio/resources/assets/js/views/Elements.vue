@@ -108,9 +108,26 @@
     <!-- eliminar -->
     <base-modal :active='activeDeleteModal' @close='activeDeleteModal=!activeDeleteModal'>
       <template slot='modal-content'>
-        <p>¿Deseas borrar el {{element.tipo}} {{element.nombre}} permanentemente de nuestros registros?</p>
-        <button class='button is-rounded is-primary' @click='activeDeleteModal=!activeDeleteModal'>No</button>
-        <button class='button is-rounded is-primary' @click='deleteElement'>Si</button>
+        <div class='delete-modal-top'>
+          <div class='circle has-background-danger'>
+            <span class='icon is-large has-text-white'>
+              <i class='fas fa-3x fa-trash-alt'></i>
+            </span>
+          </div>
+        </div>
+        <p class='is-size-5-tablet is-size-6-mobile has-text-centered'>
+          ¿Deseas borrar el 
+          <strong>{{element.tipo}} {{element.nombre}} </strong>
+           de nuestros registros?
+        </p>
+        <div class='columns is-mobile is-multiline is-centered m-0'>
+          <div class='column is-6 has-text-centered'>
+            <span class='button is-rounded is-danger left-button' @click='activeDeleteModal=!activeDeleteModal'>No</span>
+          </div>
+          <div class='column is-6 has-text-centered'>
+            <span class='button is-rounded is-success right-button' @click='deleteElement'>Si</span>
+          </div>
+        </div>
       </template>
     </base-modal>
 
@@ -480,7 +497,6 @@ import axios from 'axios'
         this.element.eliminado = null
       },
       search (name) {
-        console.log(name)
         axios.post('http://localhost:8000/api/Elements/search', {
           search: name
         })
@@ -504,4 +520,20 @@ import axios from 'axios'
     margin-bottom: 0 !important
   .textarea
     resize: none
+  .delete-modal-top
+    height: 10em
+    display: flex
+    justify-content: center
+    align-items: center
+  .circle
+    height: 8em
+    width: 8em
+    border-radius: 5em
+    display: flex
+    justify-content: center
+    align-items: center
+  .left-button
+    width: 8em
+  .right-button
+    width: 8em
 </style>
