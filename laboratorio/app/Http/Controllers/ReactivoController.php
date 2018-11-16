@@ -11,7 +11,7 @@ class ReactivoController extends Controller
 
     public function index()
     {
-        $elemento = Elemento::orderBy('nombre', 'desc')->where('tipo','reactivo')->where('eliminado','=',0)->paginate(12);
+        $elemento = Elemento::orderBy('nombre', 'asc')->where('tipo','reactivo')->where('eliminado','=',0)->get();
         return Reactivo::collection($elemento);
     }
 

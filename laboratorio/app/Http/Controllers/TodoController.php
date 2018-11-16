@@ -10,7 +10,7 @@ class TodoController extends Controller
     
     public function index()
     {
-        $elemento = Elemento::orderBy('nombre', 'desc')->where('eliminado','=',0)->paginate(12);
+        $elemento = Elemento::orderBy('nombre', 'asc')->where('eliminado','=',0)->get();
         return Todo::collection($elemento);
     }
 

@@ -10,7 +10,7 @@ class MaterialController extends Controller
 {
     public function index()
     {
-        $elemento = Elemento::orderBy('nombre', 'desc')->where('tipo','material')->where('eliminado','=',0)->paginate(12);
+        $elemento = Elemento::orderBy('nombre', 'asc')->where('tipo','material')->where('eliminado','=',0)->get();
         return Material::collection($elemento);
     }
 
