@@ -1,7 +1,7 @@
 <template>
-  <div :class="['modal p-l-sm p-r-sm', {'is-active':active}]">
+  <div :class="['modal', {'is-active':active}]">
     <div class="modal-background" @click="close"></div>
-    <div class="columns is-multiline is-mobile modal-content p-t-sm p-b-sm p-r-sm p-l-sm">
+    <div class="modal-content">
       <slot name="modal-content"></slot>
     </div>
     <button class="modal-close is-large" aria-label="close" @click="close"></button>
@@ -33,5 +33,6 @@ export default {
   .modal-content
     background-color: white
     border-radius: .3rem
+    max-height: none
 
 </style>

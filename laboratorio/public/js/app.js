@@ -36438,7 +36438,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-content[data-v-83f25f96] {\n  background-color: white;\n  border-radius: .3rem;\n}\n", ""]);
+exports.push([module.i, "\n.modal-content[data-v-83f25f96] {\n  background-color: white;\n  border-radius: .3rem;\n  max-height: none;\n}\n", ""]);
 
 // exports
 
@@ -36487,29 +36487,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { class: ["modal p-l-sm p-r-sm", { "is-active": _vm.active }] },
-    [
-      _c("div", { staticClass: "modal-background", on: { click: _vm.close } }),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "columns is-multiline is-mobile modal-content p-t-sm p-b-sm p-r-sm p-l-sm"
-        },
-        [_vm._t("modal-content")],
-        2
-      ),
-      _vm._v(" "),
-      _c("button", {
-        staticClass: "modal-close is-large",
-        attrs: { "aria-label": "close" },
-        on: { click: _vm.close }
-      })
-    ]
-  )
+  return _c("div", { class: ["modal", { "is-active": _vm.active }] }, [
+    _c("div", { staticClass: "modal-background", on: { click: _vm.close } }),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-content" }, [_vm._t("modal-content")], 2),
+    _vm._v(" "),
+    _c("button", {
+      staticClass: "modal-close is-large",
+      attrs: { "aria-label": "close" },
+      on: { click: _vm.close }
+    })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -36784,8 +36772,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -36806,7 +36792,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   created: function created() {
-    this.getElements();
+    this.getElements(this.tipo);
+  },
+  mounted: function mounted() {
+    this.getElements(this.tipo);
+    console.log('beforeUpdate');
   },
   data: function data() {
     return {
@@ -36827,19 +36817,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    getElements: function getElements() {
+    getElements: function getElements(tipo) {
       var _this = this;
 
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/Elements/reactivos').then(function (_ref) {
-        var data = _ref.data;
-
-        _this.elements = JSON.parse(data);
-        console.log(_this.elements[0]);
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/Elements/reactivos').then(function (response) {
+        _this.elements = response.data.data;
+      }).catch(function (e) {
+        console.log(e);
       });
     },
     submit: function submit() {
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/reactivos').then(function (_ref2) {
-        var data = _ref2.data;
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/reactivos').then(function (_ref) {
+        var data = _ref.data;
 
         console.log(data);
       });
@@ -37167,7 +37156,7 @@ var render = function() {
             _c(
               "form",
               {
-                staticClass: "p-t-lg p-l-md p-r-md p-b-md",
+                staticClass: "p-t-sm p-l-md p-r-md p-b-md",
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -37185,8 +37174,8 @@ var render = function() {
                   [_vm._v("Nuevo " + _vm._s(_vm.tipo))]
                 ),
                 _vm._v(" "),
-                _vm.tipo === "equipo"
-                  ? _c("div", { staticClass: "column is-12 field m-none" }, [
+                _vm.tipo === "equipos"
+                  ? _c("div", { staticClass: "field" }, [
                       _c("label", { staticClass: "label is-size-7-mobile" }, [
                         _vm._v("Intervalo de mantenimientos")
                       ]),
@@ -37218,7 +37207,7 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "column is-12 field m-none p-b-0" }, [
+                _c("div", { staticClass: "field" }, [
                   _c("label", { staticClass: "label is-size-7-mobile" }, [
                     _vm._v("Nombre")
                   ]),
@@ -37234,68 +37223,55 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "column is-6-tablet is-12-mobile field m-none p-b-0"
-                  },
-                  [
-                    _c("label", { staticClass: "label is-size-7-mobile" }, [
-                      _vm._v("No. Serie")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        staticClass: "input",
-                        attrs: { type: "text", placeholder: "Número de serie" }
-                      })
-                    ])
-                  ]
-                ),
+                _c("div", { staticClass: "field" }, [
+                  _c("label", { staticClass: "label is-size-7-mobile" }, [
+                    _vm._v("No. Serie")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "control" }, [
+                    _c("input", {
+                      staticClass: "input",
+                      attrs: { type: "text", placeholder: "Número de serie" }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "column is-6-tablet is-12-mobile m-none p-b-0"
-                  },
-                  [
-                    _c("label", { staticClass: "label is-size-7-mobile" }, [
-                      _vm._v("Cantidad")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "field has-addons has-addons-centered" },
-                      [
-                        _c("div", { staticClass: "control is-expanded" }, [
-                          _c("input", {
-                            staticClass: "input",
-                            attrs: { type: "number", placeholder: "0" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "control" }, [
-                          _c("span", { staticClass: "select" }, [
-                            _c("select", [
-                              _c("option", [_vm._v("L")]),
-                              _vm._v(" "),
-                              _c("option", [_vm._v("ml")]),
-                              _vm._v(" "),
-                              _c("option", [_vm._v("Kg")]),
-                              _vm._v(" "),
-                              _c("option", [_vm._v("g")]),
-                              _vm._v(" "),
-                              _c("option", [_vm._v("pieza")])
-                            ])
+                _c("div", {}, [
+                  _c("label", { staticClass: "label is-size-7-mobile" }, [
+                    _vm._v("Cantidad")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "field has-addons has-addons-centered" },
+                    [
+                      _c("div", { staticClass: "control is-expanded" }, [
+                        _c("input", {
+                          staticClass: "input",
+                          attrs: { type: "number", placeholder: "0" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "control" }, [
+                        _c("span", { staticClass: "select" }, [
+                          _c("select", [
+                            _c("option", [_vm._v("L")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("ml")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Kg")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("g")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("pieza")])
                           ])
                         ])
-                      ]
-                    )
-                  ]
-                ),
+                      ])
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "column is-12 field m-none p-b-0" }, [
+                _c("div", { staticClass: "field" }, [
                   _c("label", { staticClass: "label is-size-7-mobile" }, [
                     _vm._v("Descripción")
                   ]),
@@ -37318,40 +37294,34 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _vm.tipo === "reactivos"
-                  ? _c(
-                      "div",
-                      { staticClass: "column is-12 field m-none p-b-0" },
-                      [
-                        _c("label", { staticClass: "label is-size-7-mobile" }, [
-                          _vm._v("Riesgos")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "control" }, [
-                          _c("textarea", {
-                            staticClass: "textarea",
-                            attrs: {
-                              placeholder: "Descripción del elemento",
-                              rows: 2
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          {
-                            staticClass: "help has-text-right has-text-primary"
-                          },
-                          [_vm._v("150")]
-                        )
-                      ]
-                    )
+                  ? _c("div", { staticClass: "field" }, [
+                      _c("label", { staticClass: "label is-size-7-mobile" }, [
+                        _vm._v("Riesgos")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "control" }, [
+                        _c("textarea", {
+                          staticClass: "textarea",
+                          attrs: {
+                            placeholder: "Descripción del elemento",
+                            rows: 2
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        { staticClass: "help has-text-right has-text-primary" },
+                        [_vm._v("150")]
+                      )
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "column is-12 has-text-centered" }, [
-                  _c("a", { staticClass: "button is-rounded is-primary" }, [
-                    _vm._v("Agregar")
-                  ])
-                ])
+                _c(
+                  "a",
+                  { staticClass: "button is-rounded is-fullwidth is-primary" },
+                  [_vm._v("Agregar")]
+                )
               ]
             )
           ])

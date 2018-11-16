@@ -11,10 +11,10 @@
 
     <base-modal :active="active" @close="active=!active">
       <template slot="modal-content">
-        <form class='p-t-lg p-l-md p-r-md p-b-md' @submit.prevent='submit'>
+        <form class="p-t-sm p-l-md p-r-md p-b-md" @submit.prevent='submit'>
           <p class="column is-12 has-text-weight-bold has-text-centered is-size-5 m-none">Nuevo {{tipo}}</p>
           
-          <div class="column is-12 field m-none" v-if="tipo==='equipo'">
+          <div class="field" v-if="tipo==='equipos'">
             <label class="label is-size-7-mobile">Intervalo de mantenimientos</label>
             <div class="control">
               <v-date-picker mode='multiple' v-model='dates' 
@@ -23,21 +23,21 @@
             </div>
           </div>
 
-          <div class="column is-12 field m-none p-b-0">
+          <div class="field">
             <label class="label is-size-7-mobile">Nombre</label>
             <div class="control">
               <input class="input" type="text" placeholder="Nombre del elemento">
             </div>
           </div>
 
-          <div class="column is-6-tablet is-12-mobile field m-none p-b-0">
+          <div class="field">
             <label class="label is-size-7-mobile">No. Serie</label>
             <div class="control">
               <input class="input" type="text" placeholder="Número de serie">
             </div>
           </div>
 
-          <div class="column is-6-tablet is-12-mobile m-none p-b-0">
+          <div class="">
             <label class="label is-size-7-mobile">Cantidad</label>
             <div class="field has-addons has-addons-centered">
               <div class="control is-expanded">
@@ -57,7 +57,7 @@
             </div>
           </div>
 
-          <div class="column is-12 field m-none p-b-0">
+          <div class="field">
             <label class="label is-size-7-mobile">Descripción</label>
             <div class="control">
               <textarea class="textarea" placeholder="Descripción del elemento" :rows="2"></textarea>
@@ -65,7 +65,7 @@
             <p class="help has-text-right has-text-primary">150</p>
           </div>
 
-          <div class="column is-12 field m-none p-b-0" v-if="tipo==='reactivos'">
+          <div class="field" v-if="tipo==='reactivos'">
             <label class="label is-size-7-mobile">Riesgos</label>
             <div class="control">
               <textarea class="textarea" placeholder="Descripción del elemento" :rows="2"></textarea>
@@ -73,9 +73,7 @@
             <p class="help has-text-right has-text-primary">150</p>
           </div>
 
-          <div class="column is-12 has-text-centered">
-            <a class="button is-rounded is-primary">Agregar</a>
-          </div>
+          <a class="button is-rounded is-fullwidth is-primary">Agregar</a>
         </form>
       </template>
     </base-modal>
@@ -102,7 +100,11 @@ import axios from 'axios'
       }
     },
     created () {
-      this.getElements()
+      this.getElements(this.tipo)
+    },
+    mounted () {
+      this.getElements(this.tipo)
+      console.log('beforeUpdate')
     },
     data () {
       return {
@@ -122,11 +124,13 @@ import axios from 'axios'
       }
     },
     methods: {
-      getElements () {
+      getElements (tipo) {
         axios.get('http://localhost:8000/api/Elements/reactivos')
-        .then(({data})=>{
-          this.elements = JSON.parse(data)
-          console.log(this.elements[0])
+        .then(response => {
+          this.elements = response.data.data
+        })
+        .catch( e => {
+          console.log(e)
         })
       },
       submit () {
