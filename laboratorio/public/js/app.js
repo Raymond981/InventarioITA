@@ -36807,6 +36807,104 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36824,10 +36922,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       active: false,
       activeDeleteModal: false,
+      activeEditModal: false,
       dates: [],
       elements: [],
       tipo: 'todos',
       element: {
+        id: null,
         tipo: null,
         nombre: null,
         descripcion: null,
@@ -36933,11 +37033,130 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.getElements();
     },
-    openModal: function openModal() {
-      this.active = !this.active;
+    deleteElement: function deleteElement() {
+      var _this4 = this;
+
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('http://localhost:8000/api/Elements/todos/' + this.element.id).then(function (response) {
+        _this4.activeDeleteModal = false;
+        _this4.getElements();
+      }).catch(function (e) {
+        console.log(e);
+      });
+      this.initializeElement;
+    },
+    submitEdit: function submitEdit() {
+      var _this5 = this;
+
+      switch (this.element.tipo) {
+        case 'reactivo':
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('http://localhost:8000/api/Elements/reactivos/' + this.element.id, {
+            nombre: this.element.nombre,
+            descripcion: this.element.descripcion,
+            clase: this.element.clase,
+            estado_fisico: this.element.estado_fisico,
+            formula_quimica: this.element.formula_quimica,
+            no_serie: this.element.no_serie,
+            no_piezas: this.element.no_piezas,
+            cantidad: this.element.cantidad,
+            unidad_medida: this.element.unidad_medida
+          }).then(function (response) {
+            _this5.getElements();
+            _this5.activeEditModal = false;
+          }).catch(function (e) {
+            console.log(e.response);
+          });
+          break;
+        case 'material':
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('http://localhost:8000/api/Elements/materiales/' + this.element.id, {
+            nombre: this.element.nombre,
+            descripcion: this.element.descripcion,
+            no_serie: this.element.no_serie,
+            no_piezas: this.element.no_piezas
+          }).then(function (response) {
+            _this5.getElements();
+            _this5.activeEditModal = false;
+          }).catch(function (e) {
+            console.log(e.response);
+          });
+          break;
+        case 'equipo':
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('http://localhost:8000/api/Elements/equipos/' + this.element.id, {
+            nombre: this.element.nombre,
+            descripcion: this.element.descripcion,
+            no_serie: this.element.no_serie,
+            no_piezas: this.element.no_piezas,
+            mantenimiento1: this.element.mantenimiento1,
+            mantenimiento2: this.element.mantenimiento2
+          }).then(function (response) {
+            _this5.getElements();
+            _this5.activeEditModal = false;
+          }).catch(function (e) {
+            console.log(e.response);
+          });
+          break;
+
+        default:
+          break;
+      }
+    },
+    openCreateModal: function openCreateModal() {
       this.initializeElement();
+      this.active = !this.active;
+    },
+    setDeleteModal: function setDeleteModal(x) {
+      var _this6 = this;
+
+      this.initializeElement();
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/Elements/todos/' + x).then(function (response) {
+        _this6.element = response.data.data;
+        _this6.activeDeleteModal = true;
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    setEditModal: function setEditModal(x) {
+      var _this7 = this;
+
+      this.initializeElement();
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8000/api/Elements/todos/' + x).then(function (response) {
+        _this7.element.tipo = response.data.data.tipo;
+        _this7.element.id = response.data.data.id;
+        switch (_this7.element.tipo) {
+          case 'equipo':
+            _this7.element.nombre = response.data.data.nombre;
+            _this7.element.descripcion = response.data.data.descripcion;
+            _this7.element.no_serie = response.data.data.no_serie;
+            _this7.element.no_piezas = response.data.data.no_piezas;
+            _this7.element.mantenimiento1 = new Date(response.data.data.mantenimiento1);
+            _this7.element.mantenimiento2 = new Date(response.data.data.mantenimiento2);
+            break;
+          case 'material':
+            _this7.element.nombre = response.data.data.nombre;
+            _this7.element.descripcion = response.data.data.descripcion;
+            _this7.element.no_serie = response.data.data.no_serie;
+            _this7.element.no_piezas = response.data.data.no_piezas;
+            break;
+          case 'reactivo':
+            _this7.element.nombre = response.data.data.nombre;
+            _this7.element.descripcion = response.data.data.descripcion;
+            _this7.element.clase = response.data.data.clase;
+            _this7.element.estado_fisico = response.data.data.estado_fisico;
+            _this7.element.formula_quimica = response.data.data.formula_quimica;
+            _this7.element.no_serie = response.data.data.no_serie;
+            _this7.element.no_piezas = response.data.data.no_piezas;
+            _this7.element.cantidad = response.data.data.cantidad;
+            _this7.element.unidad_medida = response.data.data.unidad_medida;
+            break;
+          default:
+            break;
+        }
+        _this7.activeEditModal = true;
+      }).catch(function (e) {
+        console.log(e);
+      });
     },
     initializeElement: function initializeElement() {
+      this.element.id = null;
       this.element.nombre = null;
       this.element.descripcion = null;
       this.element.estado_fisico = null;
@@ -37098,6 +37317,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     openDeleteModal: function openDeleteModal() {
       this.$emit('openDeleteModal', this.element.id);
+    },
+    openEditModal: function openEditModal() {
+      this.$emit('openEditModal', this.element.id);
     }
   }
 });
@@ -37159,9 +37381,14 @@ var render = function() {
                       [_vm._v("Eliminar")]
                     ),
                     _vm._v(" "),
-                    _c("a", { staticClass: "dropdown-item is-size-7-mobile" }, [
-                      _vm._v("Editar")
-                    ])
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item is-size-7-mobile",
+                        on: { click: _vm.openEditModal }
+                      },
+                      [_vm._v("Editar")]
+                    )
                   ])
                 ]
               )
@@ -37242,7 +37469,7 @@ var render = function() {
         [
           _c("top-bar", {
             attrs: { element: _vm.tipo },
-            on: { open: _vm.openModal }
+            on: { open: _vm.openCreateModal }
           })
         ],
         1
@@ -37257,7 +37484,10 @@ var render = function() {
               key: element.id,
               staticClass: "column is-11 m-b-md",
               attrs: { element: element },
-              on: { openDeleteModal: _vm.setDeleteModal }
+              on: {
+                openDeleteModal: _vm.setDeleteModal,
+                openEditModal: _vm.setEditModal
+              }
             })
           })
         )
@@ -37772,17 +38002,530 @@ var render = function() {
           _c("template", { slot: "modal-content" }, [
             _c("p", [
               _vm._v(
-                "¿Deseas borrar el elemento permanentemente de nuestros registros?"
+                "¿Deseas borrar el " +
+                  _vm._s(_vm.element.tipo) +
+                  " " +
+                  _vm._s(_vm.element.nombre) +
+                  " permanentemente de nuestros registros?"
               )
             ]),
             _vm._v(" "),
-            _c("button", { staticClass: "button is-rounded is-primary" }, [
-              _vm._v("No")
-            ]),
+            _c(
+              "button",
+              {
+                staticClass: "button is-rounded is-primary",
+                on: {
+                  click: function($event) {
+                    _vm.activeDeleteModal = !_vm.activeDeleteModal
+                  }
+                }
+              },
+              [_vm._v("No")]
+            ),
             _vm._v(" "),
-            _c("button", { staticClass: "button is-rounded is-primary" }, [
-              _vm._v("Si")
-            ])
+            _c(
+              "button",
+              {
+                staticClass: "button is-rounded is-primary",
+                on: { click: _vm.deleteElement }
+              },
+              [_vm._v("Si")]
+            )
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "base-modal",
+        {
+          attrs: { active: _vm.activeEditModal },
+          on: {
+            close: function($event) {
+              _vm.activeEditModal = !_vm.activeEditModal
+            }
+          }
+        },
+        [
+          _c("template", { slot: "modal-content" }, [
+            _c(
+              "form",
+              {
+                staticClass:
+                  "columns is-multiline is-mobile m-0 p-t-sm p-l-md p-r-md p-b-md",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.submitEdit($event)
+                  }
+                }
+              },
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "column is-12 has-text-weight-bold has-text-centered is-size-5 m-none"
+                  },
+                  [_vm._v("Editar " + _vm._s(_vm.element.tipo))]
+                ),
+                _vm._v(" "),
+                _vm.element.tipo === "equipo"
+                  ? _c(
+                      "div",
+                      { staticClass: "field column is-12 p-b-0 m-b-0" },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Intervalo de mantenimientos")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "control" },
+                          [
+                            _c("v-date-picker", {
+                              attrs: {
+                                mode: "multiple",
+                                "input-props": {
+                                  class: "input",
+                                  placeholder: "Seleccione las fechas",
+                                  readonly: true
+                                }
+                              },
+                              model: {
+                                value: _vm.dates,
+                                callback: function($$v) {
+                                  _vm.dates = $$v
+                                },
+                                expression: "dates"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "field column is-12 p-b-0 m-b-0" }, [
+                  _c("label", { staticClass: "label is-size-7-mobile" }, [
+                    _vm._v("Nombre")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "control" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.element.nombre,
+                          expression: "element.nombre"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Nombre del elemento"
+                      },
+                      domProps: { value: _vm.element.nombre },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.element, "nombre", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                  },
+                  [
+                    _c("label", { staticClass: "label is-size-7-mobile" }, [
+                      _vm._v("No. Serie")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.element.no_serie,
+                            expression: "element.no_serie"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text", placeholder: "Número de serie" },
+                        domProps: { value: _vm.element.no_serie },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.element,
+                              "no_serie",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.element.tipo === "reactivo"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                      },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Clase")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.element.clase,
+                                expression: "element.clase"
+                              }
+                            ],
+                            staticClass: "input",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Nombre del elemento"
+                            },
+                            domProps: { value: _vm.element.clase },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.element,
+                                  "clase",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.element.tipo === "reactivo"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                      },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Estado físico")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control is-expanded" }, [
+                          _c("div", { staticClass: "select is-fullwidth" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.element.estado_fisico,
+                                    expression: "element.estado_fisico"
+                                  }
+                                ],
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.element,
+                                      "estado_fisico",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", [_vm._v("líquido")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("sólido")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("gaseoso")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("plasma")])
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.element.tipo === "reactivo"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                      },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Fórmula química")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.element.formula_quimica,
+                                expression: "element.formula_quimica"
+                              }
+                            ],
+                            staticClass: "input",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Nombre del elemento"
+                            },
+                            domProps: { value: _vm.element.formula_quimica },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.element,
+                                  "formula_quimica",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "field column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                  },
+                  [
+                    _c("label", { staticClass: "label is-size-7-mobile" }, [
+                      _vm._v("No. Piezas")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.element.no_piezas,
+                            expression: "element.no_piezas"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text", placeholder: "Número de serie" },
+                        domProps: { value: _vm.element.no_piezas },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.element,
+                              "no_piezas",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.element.tipo === "reactivo"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "column is-6-tablet is-12-mobile p-b-0 m-b-0"
+                      },
+                      [
+                        _c("label", { staticClass: "label is-size-7-mobile" }, [
+                          _vm._v("Cantidad")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "field has-addons has-addons-centered"
+                          },
+                          [
+                            _c("div", { staticClass: "control is-expanded" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.element.cantidad,
+                                    expression: "element.cantidad"
+                                  }
+                                ],
+                                staticClass: "input",
+                                attrs: { type: "number", placeholder: "0" },
+                                domProps: { value: _vm.element.cantidad },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.element,
+                                      "cantidad",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "control" }, [
+                              _c("span", { staticClass: "select" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.element.unidad_medida,
+                                        expression: "element.unidad_medida"
+                                      }
+                                    ],
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.element,
+                                          "unidad_medida",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", [_vm._v("l")]),
+                                    _vm._v(" "),
+                                    _c("option", [_vm._v("ml")]),
+                                    _vm._v(" "),
+                                    _c("option", [_vm._v("Kg")]),
+                                    _vm._v(" "),
+                                    _c("option", [_vm._v("g")])
+                                  ]
+                                )
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "field column is-12 p-b-0 m-b-0" }, [
+                  _c("label", { staticClass: "label is-size-7-mobile" }, [
+                    _vm._v("Descripción")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "control" }, [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.element.descripcion,
+                          expression: "element.descripcion"
+                        }
+                      ],
+                      staticClass: "textarea",
+                      attrs: {
+                        placeholder: "Descripción del elemento",
+                        rows: 2
+                      },
+                      domProps: { value: _vm.element.descripcion },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.element,
+                            "descripcion",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "help has-text-right has-text-primary" },
+                    [_vm._v("150")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "button is-rounded is-fullwidth is-primary" },
+                  [_vm._v("Actualizar")]
+                )
+              ]
+            )
           ])
         ],
         2

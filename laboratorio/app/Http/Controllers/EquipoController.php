@@ -35,6 +35,12 @@ class EquipoController extends Controller
     public function show($id)
     {
         $elemento = Elemento::findOrFail($id);
+        $elemento->nombre = $request->nombre;
+        $elemento->descripcion = $request->descripcion;
+        $elemento->no_serie = $request->no_serie;
+        $elemento->no_piezas = $request->no_piezas;
+        $elemento->mantenimiento1 = Carbon::parse($request->mantenimiento1);
+        $elemento->mantenimiento2 = Carbon::parse($request->mantenimiento2);
         return new Equipo($elemento);   
     }
 
@@ -42,11 +48,16 @@ class EquipoController extends Controller
     public function update(Request $request, $id)
     {
         $elemento = Elemento::findOrFail($id);
-        $elemento->tipo = $request->tipo;
         $elemento->nombre = $request->nombre;
         $elemento->descripcion = $request->descripcion;
+        $elemento->clase = null;
+        $elemento->estado_fisico = null;
+        $elemento->formula_quimica = null;
         $elemento->no_serie = $request->no_serie;
-        $elemento->cantidad = $request->cantidad;
+        $elemento->no_piezas = $request->no_piezas;
+        $elemento->cantidad = null;
+        $elemento->unidad_medida = null;
+
         $elemento->update();
     }
 

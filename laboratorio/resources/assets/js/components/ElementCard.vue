@@ -16,7 +16,7 @@
           <div class="dropdown-menu" role="menu">
             <div class="dropdown-content">
               <a class="dropdown-item is-size-7-mobile" @click='openDeleteModal'>Eliminar</a>
-              <a class="dropdown-item is-size-7-mobile">Editar</a>
+              <a class="dropdown-item is-size-7-mobile" @click='openEditModal'>Editar</a>
             </div>
           </div>
         </div>
@@ -46,6 +46,9 @@
     methods: {
       openDeleteModal () {
         this.$emit('openDeleteModal', this.element.id)
+      },
+      openEditModal () {
+        this.$emit('openEditModal', this.element.id)
       }
     }
   }
