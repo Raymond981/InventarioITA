@@ -1,7 +1,7 @@
 <template>
   <div class='columns is-mobile is-multiline p-t-sm p-r-sm p-l-sm'>
     <div class='column is-12 m-b-md'>
-      <top-bar :element='tipo' @open='openCreateModal' @search='search'></top-bar>
+      <top-bar element='reactivos' @open='openCreateModal' @search='search'></top-bar>
     </div>
     <div class='column is-12'>
       <div class="columns is-multiline is-mobile is-centered">
@@ -13,16 +13,7 @@
     <base-modal :active='active' @close='active=!active'>
       <template slot='modal-content'>
         <form class='columns is-multiline is-mobile m-0 p-t-sm p-l-md p-r-md p-b-md' @submit.prevent='submit' @keydown.enter.prevent='submit'>
-          <p class='column is-12 has-text-weight-bold has-text-centered is-size-5 m-none'>Nuevo {{tipo}}</p>
-          
-          <div class='field column is-12 p-b-0 m-b-0' v-if="tipo==='equipos'">
-            <label class='label is-size-7-mobile'>Intervalo de mantenimientos</label>
-            <div class='control'>
-              <v-date-picker mode='multiple' v-model='dates' 
-              :input-props='{ class: "input", placeholder: "Seleccione las fechas", readonly: true }'>
-              </v-date-picker>
-            </div>
-          </div>
+          <p class='column is-12 has-text-weight-bold has-text-centered is-size-5 m-none'>Nuevo Reactivo</p>
 
           <div class='field column is-12 p-b-0 m-b-0'>
             <label class='label is-size-7-mobile'>Nombre</label>
@@ -38,14 +29,14 @@
             </div>
           </div>
 
-          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0' v-if="tipo==='reactivos'">
+          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0'>
             <label class='label is-size-7-mobile'>Clase</label>
             <div class='control'>
               <input class='input' type='text' placeholder='Nombre del elemento' v-model='element.clase'>
             </div>
           </div>
 
-          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0' v-if="tipo==='reactivos'">
+          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0'>
             <label class='label is-size-7-mobile'>Estado físico</label>
             <div class="control is-expanded">
               <div class="select is-fullwidth">
@@ -59,7 +50,7 @@
             </div>
           </div>
 
-          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0' v-if="tipo==='reactivos'">
+          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0'>
             <label class='label is-size-7-mobile'>Fórmula química</label>
             <div class='control'>
               <input class='input' type='text' placeholder='Nombre del elemento' v-model='element.formula_quimica'>
@@ -73,7 +64,7 @@
             </div>
           </div>
 
-          <div class="column is-6-tablet is-12-mobile p-b-0 m-b-0" v-if="tipo==='reactivos'">
+          <div class="column is-6-tablet is-12-mobile p-b-0 m-b-0">
             <label class='label is-size-7-mobile'>Cantidad</label>
             <div class='field has-addons has-addons-centered'>
               <div class='control is-expanded'>
@@ -117,7 +108,7 @@
         </div>
         <p class='is-size-5-tablet is-size-6-mobile has-text-centered'>
           ¿Deseas borrar el 
-          <strong>{{element.tipo}} {{element.nombre}} </strong>
+          <strong>reactivo {{element.nombre}} </strong>
            de nuestros registros?
         </p>
         <div class='columns is-mobile is-multiline is-centered m-0'>
@@ -135,16 +126,7 @@
     <base-modal :active='activeEditModal' @close='activeEditModal=!activeEditModal'>
       <template slot='modal-content'>
         <form class='columns is-multiline is-mobile m-0 p-t-sm p-l-md p-r-md p-b-md' @submit.prevent='submitEdit'>
-          <p class='column is-12 has-text-weight-bold has-text-centered is-size-5 m-none'>Editar {{element.tipo}}</p>
-          
-          <div class='field column is-12 p-b-0 m-b-0' v-if="element.tipo==='equipo'">
-            <label class='label is-size-7-mobile'>Intervalo de mantenimientos</label>
-            <div class='control'>
-              <v-date-picker mode='multiple' v-model='dates' 
-              :input-props='{ class: "input", placeholder: "Seleccione las fechas", readonly: true }'>
-              </v-date-picker>
-            </div>
-          </div>
+          <p class='column is-12 has-text-weight-bold has-text-centered is-size-5 m-none'>Editar reactivo</p>
 
           <div class='field column is-12 p-b-0 m-b-0'>
             <label class='label is-size-7-mobile'>Nombre</label>
@@ -160,14 +142,14 @@
             </div>
           </div>
 
-          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0' v-if="element.tipo==='reactivo'">
+          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0'>
             <label class='label is-size-7-mobile'>Clase</label>
             <div class='control'>
               <input class='input' type='text' placeholder='Nombre del elemento' v-model='element.clase'>
             </div>
           </div>
 
-          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0' v-if="element.tipo==='reactivo'">
+          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0'>
             <label class='label is-size-7-mobile'>Estado físico</label>
             <div class="control is-expanded">
               <div class="select is-fullwidth">
@@ -181,7 +163,7 @@
             </div>
           </div>
 
-          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0' v-if="element.tipo==='reactivo'">
+          <div class='field column is-6-tablet is-12-mobile p-b-0 m-b-0'>
             <label class='label is-size-7-mobile'>Fórmula química</label>
             <div class='control'>
               <input class='input' type='text' placeholder='Nombre del elemento' v-model='element.formula_quimica'>
@@ -195,7 +177,7 @@
             </div>
           </div>
 
-          <div class="column is-6-tablet is-12-mobile p-b-0 m-b-0" v-if="element.tipo==='reactivo'">
+          <div class="column is-6-tablet is-12-mobile p-b-0 m-b-0">
             <label class='label is-size-7-mobile'>Cantidad</label>
             <div class='field has-addons has-addons-centered'>
               <div class='control is-expanded'>
@@ -248,10 +230,8 @@ import axios from 'axios'
       activeEditModal: false,
       dates: [],
       elements: [],
-      tipo: 'todos',
       element: {
         id: null,
-        tipo: null,
         nombre: null,
         descripcion: null,
         clase: null,
@@ -268,26 +248,10 @@ import axios from 'axios'
     }),
     created () {
       this.getElements()
-      this.$store.$on('todos', () => {
-        this.tipo = 'todos'
-        this.getElements()
-      })
-      this.$store.$on('equipos', () => {
-        this.tipo = 'equipos'
-        this.getElements()
-      })
-      this.$store.$on('materiales', () => {
-        this.tipo = 'materiales'
-        this.getElements()
-      })
-      this.$store.$on('reactivos', () => {
-        this.tipo = 'reactivos'
-        this.getElements()
-      })
     },
     methods: {
       getElements () {
-        axios.get(`http://127.0.0.1:8000/api/Elements/${this.tipo}`)
+        axios.get(`http://127.0.0.1:8000/api/Elements/reactivos`)
         .then(response => {
           this.elements = response.data.data
         })
@@ -296,64 +260,23 @@ import axios from 'axios'
         })
       },
       submit () {
-        switch (this.tipo) {
-          case 'todos':
-            break
-          case 'equipos':
-            this.element.mantenimiento1 = this.dates[0]
-            this.element.mantenimiento2 = this.dates[1]
-            axios.post('http://127.0.0.1:8000/api/Elements/equipos', {
-              nombre: this.element.nombre,
-              descripcion: this.element.descripcion,
-              no_serie: this.element.no_serie,
-              no_piezas: this.element.no_piezas,
-              mantenimiento1: this.element.mantenimiento1,
-              mantenimiento2: this.element.mantenimiento2
-            })
-            .then(response => {
-              this.active = false
-            })
-            .catch( e => {
-              console.log(e.response)
-            })
-            break
-          case 'reactivos':
-            axios.post('http://127.0.0.1:8000/api/Elements/reactivos', {
-              nombre: this.element.nombre,
-              descripcion: this.element.descripcion,
-              clase: this.element.clase,
-              estado_fisico: this.element.estado_fisico,
-              formula_quimica: this.element.formula_quimica,
-              no_serie: this.element.no_serie,
-              no_piezas: this.element.no_piezas,
-              cantidad: this.element.cantidad,
-              unidad_medida: this.element.unidad_medida
-            })
-            .then(response => {
-              this.active = false
-            })
-            .catch( e => {
-              console.log(e)
-            })
-            break
-          case 'materiales':
-            axios.post('http://127.0.0.1:8000/api/Elements/materiales', {
-              nombre: this.element.nombre,
-              descripcion: this.element.descripcion,
-              no_serie: this.element.no_serie,
-              no_piezas: this.element.no_piezas
-            })
-            .then(response => {
-              this.active = false
-            })
-            .catch( e => {
-              console.log(e.response)
-            })
-            break
-        
-          default:
-            break;
-        }
+        axios.post('http://127.0.0.1:8000/api/Elements/reactivos', {
+          nombre: this.element.nombre,
+          descripcion: this.element.descripcion,
+          clase: this.element.clase,
+          estado_fisico: this.element.estado_fisico,
+          formula_quimica: this.element.formula_quimica,
+          no_serie: this.element.no_serie,
+          no_piezas: this.element.no_piezas,
+          cantidad: this.element.cantidad,
+          unidad_medida: this.element.unidad_medida
+        })
+        .then(response => {
+          this.active = false
+        })
+        .catch( e => {
+          console.log(e.response)
+        })
         this.getElements()
       },
       deleteElement () {
@@ -368,63 +291,24 @@ import axios from 'axios'
         this.initializeElement
       },
       submitEdit () {
-        switch (this.element.tipo) {
-          case 'reactivo':
-            axios.put(`http://127.0.0.1:8000/api/Elements/reactivos/${this.element.id}`, {
-              nombre: this.element.nombre,
-              descripcion: this.element.descripcion,
-              clase: this.element.clase,
-              estado_fisico: this.element.estado_fisico,
-              formula_quimica: this.element.formula_quimica,
-              no_serie: this.element.no_serie,
-              no_piezas: this.element.no_piezas,
-              cantidad: this.element.cantidad,
-              unidad_medida: this.element.unidad_medida
-            })
-            .then(response => {
-              this.getElements()
-              this.activeEditModal = false
-            })
-            .catch( e => {
-              console.log(e.response)
-            })
-            break
-          case 'material':
-            axios.put(`http://127.0.0.1:8000/api/Elements/materiales/${this.element.id}`, {
-              nombre: this.element.nombre,
-              descripcion: this.element.descripcion,
-              no_serie: this.element.no_serie,
-              no_piezas: this.element.no_piezas
-            })
-            .then(response => {
-              this.getElements()
-              this.activeEditModal = false
-            })
-            .catch( e => {
-              console.log(e.response)
-            })
-            break
-          case 'equipo':
-            axios.put(`http://127.0.0.1:8000/api/Elements/equipos/${this.element.id}`, {
-              nombre: this.element.nombre,
-              descripcion: this.element.descripcion,
-              no_serie: this.element.no_serie,
-              no_piezas: this.element.no_piezas,
-              mantenimiento1: this.element.mantenimiento1,
-              mantenimiento2: this.element.mantenimiento2
-            })
-            .then(response => {
-              this.getElements()
-              this.activeEditModal = false
-            })
-            .catch( e => {
-              console.log(e.response)
-            })
-            break
-        
-          default:
-            break;
-        }
+        axios.put(`http://127.0.0.1:8000/api/Elements/reactivos/${this.element.id}`, {
+          nombre: this.element.nombre,
+          descripcion: this.element.descripcion,
+          clase: this.element.clase,
+          estado_fisico: this.element.estado_fisico,
+          formula_quimica: this.element.formula_quimica,
+          no_serie: this.element.no_serie,
+          no_piezas: this.element.no_piezas,
+          cantidad: this.element.cantidad,
+          unidad_medida: this.element.unidad_medida
+        })
+        .then(response => {
+          this.getElements()
+          this.activeEditModal = false
+        })
+        .catch( e => {
+          console.log(e.response)
+        })
       },
       openCreateModal () {
         this.initializeElement()
@@ -432,7 +316,7 @@ import axios from 'axios'
       },
       setDeleteModal (x) {
         this.initializeElement()
-        axios.get(`http://127.0.0.1:8000/api/Elements/todos/${x}`)
+        axios.get(`http://127.0.0.1:8000/api/Elements/reactivos/${x}`)
         .then(response => {
           this.element = response.data.data
           this.activeDeleteModal = true
@@ -443,39 +327,18 @@ import axios from 'axios'
       },
       setEditModal (x) {
         this.initializeElement()
-        axios.get(`http://127.0.0.1:8000/api/Elements/todos/${x}`)
+        axios.get(`http://127.0.0.1:8000/api/Elements/reactivos/${x}`)
         .then(response => {
-          this.element.tipo = response.data.data.tipo
           this.element.id = response.data.data.id
-          switch (this.element.tipo) {
-            case 'equipo':
-              this.element.nombre = response.data.data.nombre
-              this.element.descripcion = response.data.data.descripcion
-              this.element.no_serie = response.data.data.no_serie
-              this.element.no_piezas = response.data.data.no_piezas
-              this.element.mantenimiento1 = new Date(response.data.data.mantenimiento1)
-              this.element.mantenimiento2 = new Date(response.data.data.mantenimiento2)
-              break
-            case 'material':
-              this.element.nombre = response.data.data.nombre
-              this.element.descripcion = response.data.data.descripcion
-              this.element.no_serie = response.data.data.no_serie
-              this.element.no_piezas = response.data.data.no_piezas
-              break
-            case 'reactivo':
-              this.element.nombre = response.data.data.nombre
-              this.element.descripcion = response.data.data.descripcion
-              this.element.clase = response.data.data.clase
-              this.element.estado_fisico = response.data.data.estado_fisico
-              this.element.formula_quimica = response.data.data.formula_quimica
-              this.element.no_serie = response.data.data.no_serie
-              this.element.no_piezas = response.data.data.no_piezas
-              this.element.cantidad = response.data.data.cantidad
-              this.element.unidad_medida = response.data.data.unidad_medida
-              break
-            default:
-              break
-          }
+          this.element.nombre = response.data.data.nombre
+          this.element.descripcion = response.data.data.descripcion
+          this.element.clase = response.data.data.clase
+          this.element.estado_fisico = response.data.data.estado_fisico
+          this.element.formula_quimica = response.data.data.formula_quimica
+          this.element.no_serie = response.data.data.no_serie
+          this.element.no_piezas = response.data.data.no_piezas
+          this.element.cantidad = response.data.data.cantidad
+          this.element.unidad_medida = response.data.data.unidad_medida
           this.activeEditModal = true
         })
         .catch( e => {
@@ -497,7 +360,7 @@ import axios from 'axios'
         this.element.eliminado = null
       },
       search (name) {
-        axios.post('http://127.0.0.1:8000/api/Elements/search', {
+        axios.post('http://127.0.0.1:8000/api/Elements/search/reactivo', {
           search: name
         })
         .then(response => {

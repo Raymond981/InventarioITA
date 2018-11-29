@@ -4,7 +4,7 @@ namespace Lab\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Lab\Elemento;
-use Lab\Http\Resources\ElementoResource as Material;
+use Lab\Http\Resources\MaterialResource as Material;
 
 class MaterialController extends Controller
 {
@@ -41,13 +41,8 @@ class MaterialController extends Controller
         $elemento = Elemento::findOrFail($id);
         $elemento->nombre = $request->nombre;
         $elemento->descripcion = $request->descripcion;
-        $elemento->clase = null;
-        $elemento->estado_fisico = null;
-        $elemento->formula_quimica = null;
         $elemento->no_serie = $request->no_serie;
         $elemento->no_piezas = $request->no_piezas;
-        $elemento->cantidad = null;
-        $elemento->unidad_medida = null;
 
         $elemento->update();
     }

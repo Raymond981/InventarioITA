@@ -21,7 +21,12 @@ Route::apiResource('Elements/reactivos', 'ReactivoController');
 Route::apiResource('Elements/materiales', 'MaterialController');
 Route::apiResource('Elements/equipos', 'EquipoController');
 Route::apiResource('Elements/todos', 'TodoController');
+
 Route::post('Elements/search', 'SearchController@search');
+Route::post('Elements/search/equipo', 'SearchController@searchEquipo');
+Route::post('Elements/search/material', 'SearchController@searchMaterial');
+Route::post('Elements/search/reactivo', 'SearchController@searchReactivo');
+
 Route::get('Elements/excel/{tipo}', 'ExcelExport@excel')->name('export.excel');
 Route::post('/subir/import', 'ExcelExport@import')->name('import');
 Route::get('/subir', 'ExcelExport@index')->name('index');

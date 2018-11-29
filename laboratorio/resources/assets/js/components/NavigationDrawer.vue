@@ -9,29 +9,30 @@
       </li>
     </ul>
     
-    <a class='menu-label has-text-white p-t-lg m-b-lg' @click='toTodo'>
+    <router-link class='menu-label has-text-white p-t-lg m-b-lg' :to="{ name: 'Elements' }">
       Inventario
-    </a>
+    </router-link>
     <ul class='menu-list'>
-      <li><a @click='toReactivos'>
-        <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-spa '></i></span>
+      <li><router-link :to="{ name: 'Reactivos' }">
+        <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-spa'></i></span>
         <transition name='fade'>
           <span v-if='isActive'>Reactivos</span>
         </transition>
-      </a></li>
-      
-      <li><a @click='toMateriales'>
+      </router-link></li>
+
+      <li><router-link :to="{ name: 'Materiales' }">
         <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-bong'></i></span>
         <transition name='fade'>
           <span v-if='isActive'>Materiales</span>
         </transition>
-      </a></li>
-      <li><a @click='toEquipos'>
-        <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-briefcase '></i></span>
+      </router-link></li>
+
+      <li><router-link :to="{ name: 'Equipos' }">
+        <span class='icon is-small m-r-sm'><i class='fas fa-lg fa-briefcase'></i></span>
         <transition name='fade'>
           <span v-if='isActive'>Equipo</span>
         </transition>
-      </a></li>
+      </router-link></li>
     </ul>
   </aside>
 </template>
@@ -48,23 +49,7 @@
         this.isActive= !this.isActive
         this.$emit('toggleDrawer')
         // this.$router.push({ path: '/' })
-      },
-      toTodo () {
-        this.$store.$emit('todos')
-        this.$router.push({name: 'Elements'})
-      },
-      toEquipos () {
-        this.$store.$emit('equipos')
-        this.$router.push({name: 'Elements'})
-      },
-      toReactivos () {
-        this.$router.push({name: 'Elements'})
-        this.$store.$emit('reactivos')
-      },
-      toMateriales () {
-        this.$router.push({name: 'Elements'})
-        this.$store.$emit('materiales')
-      },
+      }
     }
   }
 </script>
