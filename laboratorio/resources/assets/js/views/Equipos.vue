@@ -206,7 +206,7 @@ import axios from 'axios'
     },
     methods: {
       getElements () {
-        axios.get(`http://127.0.0.1:8000/api/Elements/equipos`)
+        axios.get(`/api/Elements/equipos`)
         .then(response => {
           this.elements = response.data.data
         })
@@ -219,7 +219,7 @@ import axios from 'axios'
         if (!this.$v.$invalid) {
           this.element.mantenimiento1 = this.dates[0]
           this.element.mantenimiento2 = this.dates[1]
-          axios.post('http://127.0.0.1:8000/api/Elements/equipos', {
+          axios.post('/api/Elements/equipos', {
             nombre: this.$v.element.nombre.$model,
             descripcion: this.$v.element.descripcion.$model,
             no_serie: this.$v.element.no_serie.$model,
@@ -237,7 +237,7 @@ import axios from 'axios'
         this.getElements()
       },
       deleteElement () {
-        axios.delete(`http://127.0.0.1:8000/api/Elements/todos/${this.element.id}`)
+        axios.delete(`/api/Elements/todos/${this.element.id}`)
         .then(response => {
           this.activeDeleteModal = false
           this.getElements()
@@ -250,7 +250,7 @@ import axios from 'axios'
       submitEdit () {
         this.$v.$touch();
         if (!this.$v.$invalid) {
-          axios.put(`http://127.0.0.1:8000/api/Elements/equipos/${this.element.id}`, {
+          axios.put(`/api/Elements/equipos/${this.element.id}`, {
             nombre: this.$v.element.nombre.$model,
             descripcion: this.$v.element.descripcion.$model,
             no_serie: this.$v.element.no_serie.$model,
@@ -275,7 +275,7 @@ import axios from 'axios'
       },
       setDeleteModal (x) {
         this.initializeElement()
-        axios.get(`http://127.0.0.1:8000/api/Elements/todos/${x}`)
+        axios.get(`/api/Elements/todos/${x}`)
         .then(response => {
           this.element = response.data.data
           this.activeDeleteModal = true
@@ -286,7 +286,7 @@ import axios from 'axios'
       },
       setEditModal (x) {
         this.initializeElement()
-        axios.get(`http://127.0.0.1:8000/api/Elements/equipos/${x}`)
+        axios.get(`/api/Elements/equipos/${x}`)
         .then(response => {
           this.element.id = response.data.data.id
           this.element.nombre = response.data.data.nombre
@@ -314,7 +314,7 @@ import axios from 'axios'
         this.dates = null
       },
       search (name) {
-        axios.post('http://127.0.0.1:8000/api/Elements/search/equipo', {
+        axios.post('/api/Elements/search/equipo', {
           search: name
         })
         .then(response => {

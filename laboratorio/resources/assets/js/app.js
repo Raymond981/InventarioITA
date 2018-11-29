@@ -13,13 +13,11 @@ import MainApp from './views/MainApp.vue'
 import {initialize} from './helpers/general'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
-import Store from './Store'
 
 
 Vue.config.devtools = true;
 Vue.config.performance = true;
 Vue.config.productionTip = false;
-Vue.prototype.$store = Store
 
 Vue.use(VueRouter)
 

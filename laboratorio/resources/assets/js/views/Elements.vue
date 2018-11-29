@@ -268,26 +268,10 @@ import axios from 'axios'
     }),
     created () {
       this.getElements()
-      this.$store.$on('todos', () => {
-        this.tipo = 'todos'
-        this.getElements()
-      })
-      this.$store.$on('equipos', () => {
-        this.tipo = 'equipos'
-        this.getElements()
-      })
-      this.$store.$on('materiales', () => {
-        this.tipo = 'materiales'
-        this.getElements()
-      })
-      this.$store.$on('reactivos', () => {
-        this.tipo = 'reactivos'
-        this.getElements()
-      })
     },
     methods: {
       getElements () {
-        axios.get(`http://127.0.0.1:8000/api/Elements/${this.tipo}`)
+        axios.get(`/api/Elements/todos`)
         .then(response => {
           this.elements = response.data.data
         })
@@ -302,7 +286,7 @@ import axios from 'axios'
           case 'equipos':
             this.element.mantenimiento1 = this.dates[0]
             this.element.mantenimiento2 = this.dates[1]
-            axios.post('http://127.0.0.1:8000/api/Elements/equipos', {
+            axios.post('/api/Elements/equipos', {
               nombre: this.element.nombre,
               descripcion: this.element.descripcion,
               no_serie: this.element.no_serie,
@@ -318,7 +302,7 @@ import axios from 'axios'
             })
             break
           case 'reactivos':
-            axios.post('http://127.0.0.1:8000/api/Elements/reactivos', {
+            axios.post('/api/Elements/reactivos', {
               nombre: this.element.nombre,
               descripcion: this.element.descripcion,
               clase: this.element.clase,
@@ -337,7 +321,7 @@ import axios from 'axios'
             })
             break
           case 'materiales':
-            axios.post('http://127.0.0.1:8000/api/Elements/materiales', {
+            axios.post('/api/Elements/materiales', {
               nombre: this.element.nombre,
               descripcion: this.element.descripcion,
               no_serie: this.element.no_serie,
@@ -357,7 +341,7 @@ import axios from 'axios'
         this.getElements()
       },
       deleteElement () {
-        axios.delete(`http://127.0.0.1:8000/api/Elements/todos/${this.element.id}`)
+        axios.delete(`/api/Elements/todos/${this.element.id}`)
         .then(response => {
           this.activeDeleteModal = false
           this.getElements()
@@ -370,7 +354,7 @@ import axios from 'axios'
       submitEdit () {
         switch (this.element.tipo) {
           case 'reactivo':
-            axios.put(`http://127.0.0.1:8000/api/Elements/reactivos/${this.element.id}`, {
+            axios.put(`/api/Elements/reactivos/${this.element.id}`, {
               nombre: this.element.nombre,
               descripcion: this.element.descripcion,
               clase: this.element.clase,
@@ -390,7 +374,7 @@ import axios from 'axios'
             })
             break
           case 'material':
-            axios.put(`http://127.0.0.1:8000/api/Elements/materiales/${this.element.id}`, {
+            axios.put(`/api/Elements/materiales/${this.element.id}`, {
               nombre: this.element.nombre,
               descripcion: this.element.descripcion,
               no_serie: this.element.no_serie,
@@ -405,7 +389,7 @@ import axios from 'axios'
             })
             break
           case 'equipo':
-            axios.put(`http://127.0.0.1:8000/api/Elements/equipos/${this.element.id}`, {
+            axios.put(`/api/Elements/equipos/${this.element.id}`, {
               nombre: this.element.nombre,
               descripcion: this.element.descripcion,
               no_serie: this.element.no_serie,
@@ -432,7 +416,7 @@ import axios from 'axios'
       },
       setDeleteModal (x) {
         this.initializeElement()
-        axios.get(`http://127.0.0.1:8000/api/Elements/todos/${x}`)
+        axios.get(`/api/Elements/todos/${x}`)
         .then(response => {
           this.element = response.data.data
           this.activeDeleteModal = true
@@ -443,7 +427,7 @@ import axios from 'axios'
       },
       setEditModal (x) {
         this.initializeElement()
-        axios.get(`http://127.0.0.1:8000/api/Elements/todos/${x}`)
+        axios.get(`/api/Elements/todos/${x}`)
         .then(response => {
           this.element.tipo = response.data.data.tipo
           this.element.id = response.data.data.id
@@ -497,7 +481,7 @@ import axios from 'axios'
         this.element.eliminado = null
       },
       search (name) {
-        axios.post('http://127.0.0.1:8000/api/Elements/search', {
+        axios.post('/api/Elements/search', {
           search: name
         })
         .then(response => {

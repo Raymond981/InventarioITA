@@ -12712,7 +12712,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_v_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_v_calendar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_v_calendar_lib_v_calendar_min_css__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_v_calendar_lib_v_calendar_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_v_calendar_lib_v_calendar_min_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Store__ = __webpack_require__(125);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -12729,11 +12728,9 @@ __webpack_require__(21);
 
 
 
-
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.devtools = true;
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.performance = true;
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.prototype.$store = __WEBPACK_IMPORTED_MODULE_7__Store__["a" /* default */];
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
@@ -36284,17 +36281,14 @@ if (inBrowser && window.Vue) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_Home_vue__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_Home_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__views_Home_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_Elements_vue__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_Elements_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__views_Elements_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_Equipos_vue__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_Equipos_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__views_Equipos_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Materiales_vue__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Materiales_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_Materiales_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_Reactivos_vue__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_Reactivos_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_Reactivos_vue__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_Elements_vue__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_Elements_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__views_Elements_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_Equipos_vue__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_Equipos_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__views_Equipos_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_Materiales_vue__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_Materiales_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__views_Materiales_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Reactivos_vue__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Reactivos_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_Reactivos_vue__);
 
 
 
@@ -36303,112 +36297,24 @@ if (inBrowser && window.Vue) {
 var routes = [{
   path: '/',
   name: 'Elements',
-  component: __WEBPACK_IMPORTED_MODULE_1__views_Elements_vue___default.a
+  component: __WEBPACK_IMPORTED_MODULE_0__views_Elements_vue___default.a
 }, {
   path: '/Equipos',
   name: 'Equipos',
-  component: __WEBPACK_IMPORTED_MODULE_2__views_Equipos_vue___default.a
+  component: __WEBPACK_IMPORTED_MODULE_1__views_Equipos_vue___default.a
 }, {
   path: '/Materiales',
   name: 'Materiales',
-  component: __WEBPACK_IMPORTED_MODULE_3__views_Materiales_vue___default.a
+  component: __WEBPACK_IMPORTED_MODULE_2__views_Materiales_vue___default.a
 }, {
   path: '/Reactivos',
   name: 'Reactivos',
-  component: __WEBPACK_IMPORTED_MODULE_4__views_Reactivos_vue___default.a
+  component: __WEBPACK_IMPORTED_MODULE_3__views_Reactivos_vue___default.a
 }];
 
 /***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(48)
-/* template */
-var __vue_template__ = __webpack_require__(58)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/views/Home.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6c0a33b2", Component.options)
-  } else {
-    hotAPI.reload("data-v-6c0a33b2", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 48 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TopBar_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TopBar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_TopBar_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_BaseModal_vue__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_BaseModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_BaseModal_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'home',
-  components: {
-    TopBar: __WEBPACK_IMPORTED_MODULE_0__components_TopBar_vue___default.a,
-    BaseModal: __WEBPACK_IMPORTED_MODULE_1__components_BaseModal_vue___default.a
-  },
-  data: function data() {
-    return {
-      active: false
-    };
-  }
-});
-
-/***/ }),
+/* 47 */,
+/* 48 */,
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36848,82 +36754,7 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "columns is-mobile is-multiline p-t-sm p-r-sm p-l-sm" },
-    [
-      _c(
-        "div",
-        { staticClass: "column is-12" },
-        [
-          _c("top-bar", {
-            attrs: { element: "tipo" },
-            on: {
-              open: function($event) {
-                _vm.active = !_vm.active
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "base-modal",
-            {
-              attrs: { active: _vm.active },
-              on: {
-                close: function($event) {
-                  _vm.active = !_vm.active
-                }
-              }
-            },
-            [
-              _c("template", { slot: "modal-content" }, [
-                _c("p", [_vm._v("Totdfvoijdoivjdiouf")])
-              ])
-            ],
-            2
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm._m(0)
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column is-12" }, [
-      _c(
-        "p",
-        {
-          staticClass:
-            "is-size-2 has-text-centered has-text-weight-semibold has-text-success"
-        },
-        [_vm._v("Dashboard")]
-      )
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6c0a33b2", module.exports)
-  }
-}
-
-/***/ }),
+/* 58 */,
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37299,39 +37130,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    var _this = this;
-
     this.getElements();
-    this.$store.$on('todos', function () {
-      _this.tipo = 'todos';
-      _this.getElements();
-    });
-    this.$store.$on('equipos', function () {
-      _this.tipo = 'equipos';
-      _this.getElements();
-    });
-    this.$store.$on('materiales', function () {
-      _this.tipo = 'materiales';
-      _this.getElements();
-    });
-    this.$store.$on('reactivos', function () {
-      _this.tipo = 'reactivos';
-      _this.getElements();
-    });
   },
 
   methods: {
     getElements: function getElements() {
-      var _this2 = this;
+      var _this = this;
 
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://127.0.0.1:8000/api/Elements/' + this.tipo).then(function (response) {
-        _this2.elements = response.data.data;
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/Elements/todos').then(function (response) {
+        _this.elements = response.data.data;
       }).catch(function (e) {
         console.log(e);
       });
     },
     submit: function submit() {
-      var _this3 = this;
+      var _this2 = this;
 
       switch (this.tipo) {
         case 'todos':
@@ -37339,7 +37152,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case 'equipos':
           this.element.mantenimiento1 = this.dates[0];
           this.element.mantenimiento2 = this.dates[1];
-          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://127.0.0.1:8000/api/Elements/equipos', {
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/Elements/equipos', {
             nombre: this.element.nombre,
             descripcion: this.element.descripcion,
             no_serie: this.element.no_serie,
@@ -37347,13 +37160,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             mantenimiento1: this.element.mantenimiento1,
             mantenimiento2: this.element.mantenimiento2
           }).then(function (response) {
-            _this3.active = false;
+            _this2.active = false;
           }).catch(function (e) {
             console.log(e.response);
           });
           break;
         case 'reactivos':
-          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://127.0.0.1:8000/api/Elements/reactivos', {
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/Elements/reactivos', {
             nombre: this.element.nombre,
             descripcion: this.element.descripcion,
             clase: this.element.clase,
@@ -37364,19 +37177,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             cantidad: this.element.cantidad,
             unidad_medida: this.element.unidad_medida
           }).then(function (response) {
-            _this3.active = false;
+            _this2.active = false;
           }).catch(function (e) {
             console.log(e);
           });
           break;
         case 'materiales':
-          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://127.0.0.1:8000/api/Elements/materiales', {
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/Elements/materiales', {
             nombre: this.element.nombre,
             descripcion: this.element.descripcion,
             no_serie: this.element.no_serie,
             no_piezas: this.element.no_piezas
           }).then(function (response) {
-            _this3.active = false;
+            _this2.active = false;
           }).catch(function (e) {
             console.log(e.response);
           });
@@ -37388,22 +37201,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getElements();
     },
     deleteElement: function deleteElement() {
-      var _this4 = this;
+      var _this3 = this;
 
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('http://127.0.0.1:8000/api/Elements/todos/' + this.element.id).then(function (response) {
-        _this4.activeDeleteModal = false;
-        _this4.getElements();
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/Elements/todos/' + this.element.id).then(function (response) {
+        _this3.activeDeleteModal = false;
+        _this3.getElements();
       }).catch(function (e) {
         console.log(e);
       });
       this.initializeElement;
     },
     submitEdit: function submitEdit() {
-      var _this5 = this;
+      var _this4 = this;
 
       switch (this.element.tipo) {
         case 'reactivo':
-          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('http://127.0.0.1:8000/api/Elements/reactivos/' + this.element.id, {
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('/api/Elements/reactivos/' + this.element.id, {
             nombre: this.element.nombre,
             descripcion: this.element.descripcion,
             clase: this.element.clase,
@@ -37414,27 +37227,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             cantidad: this.element.cantidad,
             unidad_medida: this.element.unidad_medida
           }).then(function (response) {
-            _this5.getElements();
-            _this5.activeEditModal = false;
+            _this4.getElements();
+            _this4.activeEditModal = false;
           }).catch(function (e) {
             console.log(e.response);
           });
           break;
         case 'material':
-          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('http://127.0.0.1:8000/api/Elements/materiales/' + this.element.id, {
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('/api/Elements/materiales/' + this.element.id, {
             nombre: this.element.nombre,
             descripcion: this.element.descripcion,
             no_serie: this.element.no_serie,
             no_piezas: this.element.no_piezas
           }).then(function (response) {
-            _this5.getElements();
-            _this5.activeEditModal = false;
+            _this4.getElements();
+            _this4.activeEditModal = false;
           }).catch(function (e) {
             console.log(e.response);
           });
           break;
         case 'equipo':
-          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('http://127.0.0.1:8000/api/Elements/equipos/' + this.element.id, {
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('/api/Elements/equipos/' + this.element.id, {
             nombre: this.element.nombre,
             descripcion: this.element.descripcion,
             no_serie: this.element.no_serie,
@@ -37442,8 +37255,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             mantenimiento1: this.element.mantenimiento1,
             mantenimiento2: this.element.mantenimiento2
           }).then(function (response) {
-            _this5.getElements();
-            _this5.activeEditModal = false;
+            _this4.getElements();
+            _this4.activeEditModal = false;
           }).catch(function (e) {
             console.log(e.response);
           });
@@ -37458,53 +37271,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.active = !this.active;
     },
     setDeleteModal: function setDeleteModal(x) {
-      var _this6 = this;
+      var _this5 = this;
 
       this.initializeElement();
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://127.0.0.1:8000/api/Elements/todos/' + x).then(function (response) {
-        _this6.element = response.data.data;
-        _this6.activeDeleteModal = true;
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/Elements/todos/' + x).then(function (response) {
+        _this5.element = response.data.data;
+        _this5.activeDeleteModal = true;
       }).catch(function (e) {
         console.log(e);
       });
     },
     setEditModal: function setEditModal(x) {
-      var _this7 = this;
+      var _this6 = this;
 
       this.initializeElement();
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://127.0.0.1:8000/api/Elements/todos/' + x).then(function (response) {
-        _this7.element.tipo = response.data.data.tipo;
-        _this7.element.id = response.data.data.id;
-        switch (_this7.element.tipo) {
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/Elements/todos/' + x).then(function (response) {
+        _this6.element.tipo = response.data.data.tipo;
+        _this6.element.id = response.data.data.id;
+        switch (_this6.element.tipo) {
           case 'equipo':
-            _this7.element.nombre = response.data.data.nombre;
-            _this7.element.descripcion = response.data.data.descripcion;
-            _this7.element.no_serie = response.data.data.no_serie;
-            _this7.element.no_piezas = response.data.data.no_piezas;
-            _this7.element.mantenimiento1 = new Date(response.data.data.mantenimiento1);
-            _this7.element.mantenimiento2 = new Date(response.data.data.mantenimiento2);
+            _this6.element.nombre = response.data.data.nombre;
+            _this6.element.descripcion = response.data.data.descripcion;
+            _this6.element.no_serie = response.data.data.no_serie;
+            _this6.element.no_piezas = response.data.data.no_piezas;
+            _this6.element.mantenimiento1 = new Date(response.data.data.mantenimiento1);
+            _this6.element.mantenimiento2 = new Date(response.data.data.mantenimiento2);
             break;
           case 'material':
-            _this7.element.nombre = response.data.data.nombre;
-            _this7.element.descripcion = response.data.data.descripcion;
-            _this7.element.no_serie = response.data.data.no_serie;
-            _this7.element.no_piezas = response.data.data.no_piezas;
+            _this6.element.nombre = response.data.data.nombre;
+            _this6.element.descripcion = response.data.data.descripcion;
+            _this6.element.no_serie = response.data.data.no_serie;
+            _this6.element.no_piezas = response.data.data.no_piezas;
             break;
           case 'reactivo':
-            _this7.element.nombre = response.data.data.nombre;
-            _this7.element.descripcion = response.data.data.descripcion;
-            _this7.element.clase = response.data.data.clase;
-            _this7.element.estado_fisico = response.data.data.estado_fisico;
-            _this7.element.formula_quimica = response.data.data.formula_quimica;
-            _this7.element.no_serie = response.data.data.no_serie;
-            _this7.element.no_piezas = response.data.data.no_piezas;
-            _this7.element.cantidad = response.data.data.cantidad;
-            _this7.element.unidad_medida = response.data.data.unidad_medida;
+            _this6.element.nombre = response.data.data.nombre;
+            _this6.element.descripcion = response.data.data.descripcion;
+            _this6.element.clase = response.data.data.clase;
+            _this6.element.estado_fisico = response.data.data.estado_fisico;
+            _this6.element.formula_quimica = response.data.data.formula_quimica;
+            _this6.element.no_serie = response.data.data.no_serie;
+            _this6.element.no_piezas = response.data.data.no_piezas;
+            _this6.element.cantidad = response.data.data.cantidad;
+            _this6.element.unidad_medida = response.data.data.unidad_medida;
             break;
           default:
             break;
         }
-        _this7.activeEditModal = true;
+        _this6.activeEditModal = true;
       }).catch(function (e) {
         console.log(e);
       });
@@ -37524,12 +37337,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.element.eliminado = null;
     },
     search: function search(name) {
-      var _this8 = this;
+      var _this7 = this;
 
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://127.0.0.1:8000/api/Elements/search', {
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/Elements/search', {
         search: name
       }).then(function (response) {
-        _this8.elements = response.data;
+        _this7.elements = response.data;
       }).catch(function (e) {
         console.log(e.response);
       });
@@ -39218,7 +39031,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getElements: function getElements() {
       var _this = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('http://127.0.0.1:8000/api/Elements/equipos').then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('/api/Elements/equipos').then(function (response) {
         _this.elements = response.data.data;
       }).catch(function (e) {
         console.log(e);
@@ -39231,7 +39044,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!this.$v.$invalid) {
         this.element.mantenimiento1 = this.dates[0];
         this.element.mantenimiento2 = this.dates[1];
-        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('http://127.0.0.1:8000/api/Elements/equipos', {
+        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/api/Elements/equipos', {
           nombre: this.$v.element.nombre.$model,
           descripcion: this.$v.element.descripcion.$model,
           no_serie: this.$v.element.no_serie.$model,
@@ -39249,7 +39062,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     deleteElement: function deleteElement() {
       var _this3 = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.delete('http://127.0.0.1:8000/api/Elements/todos/' + this.element.id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.delete('/api/Elements/todos/' + this.element.id).then(function (response) {
         _this3.activeDeleteModal = false;
         _this3.getElements();
       }).catch(function (e) {
@@ -39262,7 +39075,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.put('http://127.0.0.1:8000/api/Elements/equipos/' + this.element.id, {
+        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.put('/api/Elements/equipos/' + this.element.id, {
           nombre: this.$v.element.nombre.$model,
           descripcion: this.$v.element.descripcion.$model,
           no_serie: this.$v.element.no_serie.$model,
@@ -39287,7 +39100,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this5 = this;
 
       this.initializeElement();
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('http://127.0.0.1:8000/api/Elements/todos/' + x).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('/api/Elements/todos/' + x).then(function (response) {
         _this5.element = response.data.data;
         _this5.activeDeleteModal = true;
       }).catch(function (e) {
@@ -39298,7 +39111,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this6 = this;
 
       this.initializeElement();
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('http://127.0.0.1:8000/api/Elements/equipos/' + x).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('/api/Elements/equipos/' + x).then(function (response) {
         _this6.element.id = response.data.data.id;
         _this6.element.nombre = response.data.data.nombre;
         _this6.element.descripcion = response.data.data.descripcion;
@@ -39326,7 +39139,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     search: function search(name) {
       var _this7 = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('http://127.0.0.1:8000/api/Elements/search/equipo', {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/api/Elements/search/equipo', {
         search: name
       }).then(function (response) {
         _this7.elements = response.data;
@@ -40370,7 +40183,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getElements: function getElements() {
       var _this = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get("http://127.0.0.1:8000/api/Elements/materiales").then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get("/api/Elements/materiales").then(function (response) {
         _this.elements = response.data.data;
       }).catch(function (e) {
         console.log(e.response);
@@ -40381,7 +40194,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post("http://127.0.0.1:8000/api/Elements/materiales", {
+        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post("/api/Elements/materiales", {
           nombre: this.$v.element.nombre.$model,
           descripcion: this.$v.element.descripcion.$model,
           no_serie: this.$v.element.no_serie.$model,
@@ -40399,7 +40212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     deleteElement: function deleteElement() {
       var _this3 = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.delete("http://127.0.0.1:8000/api/Elements/materiales/" + this.element.id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.delete("/api/Elements/materiales/" + this.element.id).then(function (response) {
         _this3.activeDeleteModal = false;
         _this3.getElements();
       }).catch(function (e) {
@@ -40412,7 +40225,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.put("http://127.0.0.1:8000/api/Elements/materiales/" + this.element.id, {
+        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.put("/api/Elements/materiales/" + this.element.id, {
           nombre: this.$v.element.nombre.$model,
           descripcion: this.$v.element.descripcion.$model,
           no_serie: this.$v.element.no_serie.$model,
@@ -40435,7 +40248,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this5 = this;
 
       this.initializeElement();
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get("http://127.0.0.1:8000/api/Elements/materiales/" + x).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get("/api/Elements/materiales/" + x).then(function (response) {
         _this5.element = response.data.data;
         _this5.activeDeleteModal = true;
       }).catch(function (e) {
@@ -40446,7 +40259,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this6 = this;
 
       this.initializeElement();
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get("http://127.0.0.1:8000/api/Elements/materiales/" + x).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get("/api/Elements/materiales/" + x).then(function (response) {
         _this6.element.id = response.data.data.id;
         _this6.element.nombre = response.data.data.nombre;
         _this6.element.descripcion = response.data.data.descripcion;
@@ -40468,7 +40281,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     search: function search(name) {
       var _this7 = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post("http://127.0.0.1:8000/api/Elements/search/material", {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post("/api/Elements/search/material", {
         search: name
       }).then(function (response) {
         _this7.elements = response.data;
@@ -43121,7 +42934,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getElements: function getElements() {
       var _this = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('http://127.0.0.1:8000/api/Elements/reactivos').then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('/api/Elements/reactivos').then(function (response) {
         _this.elements = response.data.data;
       }).catch(function (e) {
         console.log(e);
@@ -43132,7 +42945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('http://127.0.0.1:8000/api/Elements/reactivos', {
+        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/api/Elements/reactivos', {
           nombre: this.element.nombre,
           descripcion: this.element.descripcion,
           clase: this.element.clase,
@@ -43155,7 +42968,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     deleteElement: function deleteElement() {
       var _this3 = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.delete('http://127.0.0.1:8000/api/Elements/todos/' + this.element.id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.delete('/api/Elements/todos/' + this.element.id).then(function (response) {
         _this3.activeDeleteModal = false;
         _this3.getElements();
       }).catch(function (e) {
@@ -43168,7 +42981,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.put('http://127.0.0.1:8000/api/Elements/reactivos/' + this.element.id, {
+        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.put('/api/Elements/reactivos/' + this.element.id, {
           nombre: this.element.nombre,
           descripcion: this.element.descripcion,
           clase: this.element.clase,
@@ -43196,7 +43009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this5 = this;
 
       this.initializeElement();
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('http://127.0.0.1:8000/api/Elements/reactivos/' + x).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('/api/Elements/reactivos/' + x).then(function (response) {
         _this5.element = response.data.data;
         _this5.activeDeleteModal = true;
       }).catch(function (e) {
@@ -43207,7 +43020,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this6 = this;
 
       this.initializeElement();
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('http://127.0.0.1:8000/api/Elements/reactivos/' + x).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('/api/Elements/reactivos/' + x).then(function (response) {
         _this6.element.id = response.data.data.id;
         _this6.element.nombre = response.data.data.nombre;
         _this6.element.descripcion = response.data.data.descripcion;
@@ -43238,7 +43051,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     search: function search(name) {
       var _this7 = this;
 
-      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('http://127.0.0.1:8000/api/Elements/search/reactivo', {
+      __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/api/Elements/search/reactivo', {
         search: name
       }).then(function (response) {
         _this7.elements = response.data;
@@ -43664,7 +43477,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "input",
-                            attrs: { placeholder: "0" },
+                            attrs: { type: "text", placeholder: "0" },
                             domProps: { value: _vm.$v.element.cantidad.$model },
                             on: {
                               input: function($event) {
@@ -44233,7 +44046,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "input",
-                            attrs: { placeholder: "0" },
+                            attrs: { type: "text", placeholder: "0" },
                             domProps: { value: _vm.$v.element.cantidad.$model },
                             on: {
                               input: function($event) {
@@ -45371,16 +45184,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 125 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a());
-
-/***/ }),
+/* 125 */,
 /* 126 */
 /***/ (function(module, exports) {
 

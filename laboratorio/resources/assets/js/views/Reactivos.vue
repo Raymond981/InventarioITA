@@ -74,7 +74,7 @@
             <label class='label is-size-7-mobile'>Cantidad</label>
             <div class='field has-addons has-addons-centered'>
               <div class='control is-expanded'>
-                <input class='input' placeholder='0' v-model='$v.element.cantidad.$model'>
+                <input class='input' type='text' placeholder='0' v-model='$v.element.cantidad.$model'>
               </div>
               <p class="control">
                 <span class="select">
@@ -195,7 +195,7 @@
             <label class='label is-size-7-mobile'>Cantidad</label>
             <div class='field has-addons has-addons-centered'>
               <div class='control is-expanded'>
-                <input class='input' placeholder='0' v-model='$v.element.cantidad.$model'>
+                <input class='input' type='text' placeholder='0' v-model='$v.element.cantidad.$model'>
               </div>
               <p class="control">
                 <span class="select">
@@ -308,7 +308,7 @@ import axios from 'axios'
     },
     methods: {
       getElements () {
-        axios.get(`http://127.0.0.1:8000/api/Elements/reactivos`)
+        axios.get(`/api/Elements/reactivos`)
         .then(response => {
           this.elements = response.data.data
         })
@@ -319,7 +319,7 @@ import axios from 'axios'
       submit () {
         this.$v.$touch();
         if (!this.$v.$invalid) {
-          axios.post('http://127.0.0.1:8000/api/Elements/reactivos', {
+          axios.post('/api/Elements/reactivos', {
             nombre: this.element.nombre,
             descripcion: this.element.descripcion,
             clase: this.element.clase,
@@ -342,7 +342,7 @@ import axios from 'axios'
         this.getElements()
       },
       deleteElement () {
-        axios.delete(`http://127.0.0.1:8000/api/Elements/todos/${this.element.id}`)
+        axios.delete(`/api/Elements/todos/${this.element.id}`)
         .then(response => {
           this.activeDeleteModal = false
           this.getElements()
@@ -355,7 +355,7 @@ import axios from 'axios'
       submitEdit () {
         this.$v.$touch();
         if (!this.$v.$invalid) {
-          axios.put(`http://127.0.0.1:8000/api/Elements/reactivos/${this.element.id}`, {
+          axios.put(`/api/Elements/reactivos/${this.element.id}`, {
             nombre: this.element.nombre,
             descripcion: this.element.descripcion,
             clase: this.element.clase,
@@ -383,7 +383,7 @@ import axios from 'axios'
       },
       setDeleteModal (x) {
         this.initializeElement()
-        axios.get(`http://127.0.0.1:8000/api/Elements/reactivos/${x}`)
+        axios.get(`/api/Elements/reactivos/${x}`)
         .then(response => {
           this.element = response.data.data
           this.activeDeleteModal = true
@@ -394,7 +394,7 @@ import axios from 'axios'
       },
       setEditModal (x) {
         this.initializeElement()
-        axios.get(`http://127.0.0.1:8000/api/Elements/reactivos/${x}`)
+        axios.get(`/api/Elements/reactivos/${x}`)
         .then(response => {
           this.element.id = response.data.data.id
           this.element.nombre = response.data.data.nombre
@@ -425,7 +425,7 @@ import axios from 'axios'
         this.element.eliminado = null
       },
       search (name) {
-        axios.post('http://127.0.0.1:8000/api/Elements/search/reactivo', {
+        axios.post('/api/Elements/search/reactivo', {
           search: name
         })
         .then(response => {

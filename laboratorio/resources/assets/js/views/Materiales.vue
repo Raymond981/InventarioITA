@@ -254,7 +254,7 @@ export default {
   methods: {
     getElements() {
       axios
-        .get(`http://127.0.0.1:8000/api/Elements/materiales`)
+        .get(`/api/Elements/materiales`)
         .then(response => {
           this.elements = response.data.data;
         })
@@ -266,7 +266,7 @@ export default {
       this.$v.$touch();
       if (!this.$v.$invalid) {
         axios
-          .post("http://127.0.0.1:8000/api/Elements/materiales", {
+          .post("/api/Elements/materiales", {
             nombre: this.$v.element.nombre.$model,
             descripcion: this.$v.element.descripcion.$model,
             no_serie: this.$v.element.no_serie.$model,
@@ -286,7 +286,7 @@ export default {
     deleteElement() {
       axios
         .delete(
-          `http://127.0.0.1:8000/api/Elements/materiales/${this.element.id}`
+          `/api/Elements/materiales/${this.element.id}`
         )
         .then(response => {
           this.activeDeleteModal = false;
@@ -302,7 +302,7 @@ export default {
       if (!this.$v.$invalid) {
         axios
           .put(
-            `http://127.0.0.1:8000/api/Elements/materiales/${this.element.id}`,
+            `/api/Elements/materiales/${this.element.id}`,
             {
               nombre: this.$v.element.nombre.$model,
               descripcion: this.$v.element.descripcion.$model,
@@ -328,7 +328,7 @@ export default {
     setDeleteModal(x) {
       this.initializeElement();
       axios
-        .get(`http://127.0.0.1:8000/api/Elements/materiales/${x}`)
+        .get(`/api/Elements/materiales/${x}`)
         .then(response => {
           this.element = response.data.data;
           this.activeDeleteModal = true;
@@ -340,7 +340,7 @@ export default {
     setEditModal(x) {
       this.initializeElement();
       axios
-        .get(`http://127.0.0.1:8000/api/Elements/materiales/${x}`)
+        .get(`/api/Elements/materiales/${x}`)
         .then(response => {
           this.element.id = response.data.data.id;
           this.element.nombre = response.data.data.nombre;
@@ -363,7 +363,7 @@ export default {
     },
     search(name) {
       axios
-        .post("http://127.0.0.1:8000/api/Elements/search/material", {
+        .post("/api/Elements/search/material", {
           search: name
         })
         .then(response => {

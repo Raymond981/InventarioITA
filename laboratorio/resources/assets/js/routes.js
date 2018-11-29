@@ -1,4 +1,3 @@
-import Home from './views/Home.vue'
 import Elements from './views/Elements.vue'
 import Equipos from './views/Equipos.vue'
 import Materiales from './views/Materiales.vue'
